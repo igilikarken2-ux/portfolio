@@ -1,0 +1,340 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Дастархан Ресторан</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Manrope:wght@400;500;700&display=swap">
+<style>
+/* Layout: night-steppe indigo with saffron and felt-red; a woven qoshqar-muiz ornament band is the signature, the menu with a live order basket is the working heart */
+:root{
+  --bg:#141a33; --surface:#1d2546; --line:rgba(242,227,196,.14);
+  --fg:#f2e3c4; --mute:#a9aec8; --saffron:#f0b43a; --felt:#c2412f;
+  --display:"Yeseva One","Georgia",serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);margin:0}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;margin:0;text-wrap:balance}
+h2{font-size:clamp(34px,5vw,58px);margin-bottom:26px}
+p{margin:0}
+.mute{color:var(--mute)}
+button,input,select,textarea{font:inherit}
+:focus-visible{outline:2px solid var(--saffron);outline-offset:3px}
+
+.orn{height:26px;background-color:var(--felt);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='26' viewBox='0 0 52 26'%3E%3Cpath d='M26 22V12M26 12c0-6-8-8-10-3s4 7 6 3M26 12c0-6 8-8 10-3s-4 7-6 3M4 13h8M40 13h8' stroke='%23f0b43a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size:52px 26px;background-repeat:repeat-x;background-position:center}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(20,26,51,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:22px;height:70px}
+.logo{font-family:var(--display);font-size:26px;text-decoration:none;color:var(--saffron)}
+nav.links{display:flex;gap:2px;margin-left:auto}
+nav.links a{text-decoration:none;padding:8px 13px;border-radius:8px;color:var(--mute);font-weight:500;font-size:15px}
+nav.links a:hover{color:var(--fg)}
+nav.links a.on{color:var(--bg);background:var(--saffron)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--saffron);color:#231800;border:0;border-radius:10px;padding:13px 22px;font-weight:700;text-decoration:none;cursor:pointer;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.red{background:var(--felt);color:#fff}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--fg);border-radius:10px;width:44px;height:40px;cursor:pointer;font-size:20px}
+@media(max-width:920px){
+  .bar .btn{display:none}.burger{display:block}
+  nav.links{position:fixed;inset:70px 0 auto 0;flex-direction:column;background:var(--bg);padding:14px 20px 24px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .3s;margin:0}
+  nav.links.open{transform:none}
+  nav.links a{font-size:20px;padding:12px}
+}
+.page{padding-block:56px 100px;animation:in .5s ease both}
+@keyframes in{from{opacity:.001;transform:translateY(12px)}}
+@keyframes steam{0%{transform:translateY(0) scaleX(1);opacity:0}30%{opacity:.6}100%{transform:translateY(-60px) scaleX(1.6);opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(46px,7.5vw,96px)}
+.hero h1 small{display:block;font-family:var(--body);font-size:16px;color:var(--saffron);letter-spacing:.06em;margin-bottom:16px}
+.hero .lead{margin-top:22px;font-size:18px;color:var(--mute);max-width:500px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.plate{position:relative;aspect-ratio:1;max-width:460px;width:100%;justify-self:center}
+.plate .dish{position:absolute;inset:6%;border-radius:50%;background:
+  radial-gradient(circle at 50% 50%,#f6e9cf 0 34%,transparent 35%),
+  repeating-conic-gradient(from 0deg,#e9d3a4 0 10deg,#dcc08a 10deg 20deg);
+  box-shadow:0 0 0 12px var(--surface),0 0 0 14px var(--saffron),0 40px 80px -20px rgba(0,0,0,.6)}
+.plate .meat{position:absolute;inset:28%;border-radius:50%;background:radial-gradient(circle at 40% 35%,#c8773f,#8a3f1e 60%,#5c2612);box-shadow:inset 0 -10px 20px rgba(0,0,0,.3)}
+.plate .onion{position:absolute;width:10%;aspect-ratio:1;border-radius:50%;border:3px solid #fff7e6}
+.plate .s{position:absolute;left:50%;top:18%;width:18px;height:40px;border-radius:50%;background:rgba(255,255,255,.35);filter:blur(6px);animation:steam 3s ease-in infinite}
+.plate .s:nth-child(2){left:42%;animation-delay:1s}.plate .s:nth-child(3){left:58%;animation-delay:2s}
+.plate .lbl{position:absolute;bottom:0;right:0;background:var(--felt);color:#fff;border-radius:12px;padding:10px 14px;font-size:14px;transform:rotate(-4deg)}
+.plate .lbl b{display:block;font-family:var(--display);font-weight:400;font-size:20px}
+@media(max-width:820px){.hero{grid-template-columns:1fr}.plate{max-width:340px}}
+
+section.block{margin-top:90px}
+.row-head{display:flex;justify-content:space-between;align-items:end;gap:18px;flex-wrap:wrap;margin-bottom:26px}
+.row-head h2{margin:0}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-block:1px solid var(--line)}
+.feats div{padding:26px 22px;border-right:1px solid var(--line)}
+.feats div:last-child{border:0}
+.feats h3{font-size:24px;color:var(--saffron);margin-bottom:6px}
+@media(max-width:760px){.feats{grid-template-columns:1fr}.feats div{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* menu */
+.mtabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:26px;position:sticky;top:calc(70px + env(safe-area-inset-top,0px));background:var(--bg);z-index:5;padding-top:10px}
+.mtabs button{flex:none;background:none;border:1px solid var(--line);color:var(--mute);padding:9px 16px;border-radius:999px;cursor:pointer}
+.mtabs button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.dish-c{background:var(--surface);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.dish-c .pic{aspect-ratio:16/10;max-width:100%;position:relative}
+.dish-c .pic .hit{position:absolute;top:12px;left:12px;background:var(--felt);color:#fff;font-size:12px;padding:3px 9px;border-radius:6px}
+.dish-c .in{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.dish-c h3{font-size:21px}
+.dish-c .d{font-size:14px;color:var(--mute);flex:1}
+.dish-c .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.dish-c .p{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+.dish-c .w{font-size:13px;color:var(--mute);font-weight:400}
+.add{background:var(--saffron);color:#231800;border:0;border-radius:10px;height:38px;min-width:38px;padding:0 12px;font-weight:700;cursor:pointer}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:8px;width:32px;height:32px;cursor:pointer}
+
+/* cart */
+.fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:40;box-shadow:0 14px 30px -10px rgba(0,0,0,.6)}
+.fab i{font-style:normal;background:var(--bg);color:var(--saffron);border-radius:999px;padding:1px 8px;font-size:13px}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--surface);z-index:50;transform:translateX(100%);transition:transform .35s;display:flex;flex-direction:column;padding:calc(20px + env(safe-area-inset-top,0px)) 22px calc(20px + env(safe-area-inset-bottom,0px));box-shadow:-20px 0 60px rgba(0,0,0,.5)}
+.drawer{visibility:hidden;transition:transform .35s,visibility .35s}
+.drawer.open{transform:none;visibility:visible}
+.drawer .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.drawer .head h3{font-size:28px}
+.x{background:none;border:1px solid var(--line);color:var(--fg);border-radius:10px;width:40px;height:40px;cursor:pointer;font-size:18px}
+.lines{flex:1;overflow:auto;display:grid;gap:12px;align-content:start}
+.line{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.line .p{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.shade{position:fixed;inset:0;background:rgba(5,8,20,.55);z-index:45}
+.tot{display:flex;justify-content:space-between;font-size:20px;font-weight:700;padding-block:14px;border-top:1px solid var(--line)}
+.seg{display:flex;background:var(--bg);border-radius:10px;padding:4px;gap:4px;margin-bottom:10px}
+.seg button{flex:1;background:none;border:0;color:var(--mute);padding:8px;border-radius:8px;cursor:pointer}
+.seg button.on{background:var(--saffron);color:#231800;font-weight:700}
+
+/* banquet */
+.halls{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){.halls{grid-template-columns:1fr}}
+.hall{background:var(--surface);border-radius:20px;padding:22px;display:grid;gap:8px;border:1.5px solid transparent;cursor:pointer;text-align:left;color:var(--fg)}
+.hall.on{border-color:var(--saffron)}
+.hall h3{font-size:24px}
+.calc{margin-top:30px;background:var(--surface);border-radius:24px;padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center}
+@media(max-width:760px){.calc{grid-template-columns:1fr}}
+.calc input[type=range]{width:100%;accent-color:var(--saffron)}
+.big{font-family:var(--display);font-size:clamp(36px,5vw,54px);color:var(--saffron);font-variant-numeric:tabular-nums}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+.gal div{border-radius:18px;display:flex;align-items:flex-end;padding:16px;font-family:var(--display);font-size:20px}
+.gal .w2{grid-column:span 2}.gal .h2{grid-row:span 2}
+@media(max-width:760px){.gal{grid-template-columns:1fr 1fr;grid-auto-rows:150px}}
+
+/* contacts */
+.two{display:grid;grid-template-columns:1fr 1.1fr;gap:40px}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+dl{display:grid;grid-template-columns:auto 1fr;gap:12px 22px;margin:0}
+dt{color:var(--mute)} dd{margin:0;font-weight:500}
+form.f{background:var(--surface);border-radius:24px;padding:26px;display:grid;gap:14px}
+form.f h3{font-size:30px}
+label{display:grid;gap:6px;font-size:14px;color:var(--mute)}
+input,select,textarea{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.grid2{grid-template-columns:1fr}}
+.stepper{display:flex;align-items:center;gap:14px}
+.stepper button{width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg);font-size:20px;cursor:pointer}
+.stepper b{font-size:24px;min-width:30px;text-align:center;font-variant-numeric:tabular-nums}
+.ok{background:var(--surface);border-radius:24px;padding:36px 26px;text-align:center}
+.ok h3{font-size:32px;color:var(--saffron);margin-bottom:8px}
+footer{padding-block:30px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+</style>
+
+<div class="orn" aria-hidden="true"></div>
+<header class="bar"><div class="wrap">
+  <a class="logo" href="#home" data-go="home">Дастархан</a>
+  <nav class="links" id="nav">
+    <a href="#home" data-go="home">Главная</a>
+    <a href="#menu" data-go="menu">Меню</a>
+    <a href="#banquet" data-go="banquet">Банкеты</a>
+    <a href="#gallery" data-go="gallery">Галерея</a>
+    <a href="#contacts" data-go="contacts">Бронь и контакты</a>
+  </nav>
+  <a class="btn" href="#contacts" data-go="contacts">Забронировать стол</a>
+  <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">☰</button>
+</div></header>
+
+<main class="wrap">
+<div class="page" data-page="home">
+  <div class="hero">
+    <div>
+      <h1><small>Казахская кухня · Астана, с 2015 года</small>Бешбармак, как дома у апашки</h1>
+      <p class="lead">Мясо томим шесть часов, тесто раскатываем руками, баурсаки жарим к каждому столу. Семейные ужины, тои и доставка по городу.</p>
+      <div class="cta"><a class="btn" href="#menu" data-go="menu">Открыть меню</a><a class="btn ghost" href="#contacts" data-go="contacts">Забронировать стол</a></div>
+    </div>
+    <div class="plate" aria-hidden="true">
+      <div class="dish"></div><div class="meat"></div>
+      <span class="onion" style="left:30%;top:30%"></span><span class="onion" style="left:58%;top:36%"></span><span class="onion" style="left:44%;top:58%"></span>
+      <span class="s"></span><span class="s"></span><span class="s"></span>
+      <div class="lbl">Хит зала<b>Бешбармак из конины</b></div>
+    </div>
+  </div>
+
+  <section class="block"><div class="feats">
+    <div><h3>Своя конина и баранина</h3><p class="mute">Мясо от фермы в Акмолинской области, привозим два раза в неделю.</p></div>
+    <div><h3>Залы до 250 гостей</h3><p class="mute">Той, сундет, юбилей. Сцена, звук и ведущий по запросу.</p></div>
+    <div><h3>Доставка за 60 минут</h3><p class="mute">По Левому и Правому берегу. Бесплатно от 15 000 ₸.</p></div>
+  </div></section>
+
+  <section class="block">
+    <div class="row-head"><h2>Любимое гостей</h2><a class="mute" href="#menu" data-go="menu">Всё меню</a></div>
+    <div class="mgrid" id="hits"></div>
+  </section>
+</div>
+
+<div class="page" data-page="menu" hidden>
+  <h2>Меню</h2>
+  <div class="mtabs" id="mtabs"></div>
+  <div id="menuList"></div>
+</div>
+
+<div class="page" data-page="banquet" hidden>
+  <h2>Банкеты и тои</h2>
+  <p class="mute" style="max-width:620px;margin:-8px 0 30px">Выберите зал и число гостей, посчитаем примерную стоимость. Точное меню составим вместе с вами.</p>
+  <div class="halls" id="halls"></div>
+  <div class="calc">
+    <div>
+      <label for="guests">Гостей: <b id="gN" style="color:var(--fg)">80</b></label>
+      <input type="range" id="guests" min="10" max="250" value="80" step="5">
+      <div class="seg" id="pkg" style="margin-top:18px"><button type="button" class="on" data-p="12000">Стандарт</button><button type="button" data-p="16000">Той</button><button type="button" data-p="22000">Премиум</button></div>
+      <p class="mute" style="font-size:14px" id="pkgInfo"></p>
+    </div>
+    <div>
+      <div class="mute">Примерная стоимость</div>
+      <div class="big" id="bSum">960 000 ₸</div>
+      <div class="mute" style="font-size:14px;margin-top:6px" id="bNote"></div>
+      <a class="btn" style="margin-top:18px" href="#contacts" data-go="contacts">Обсудить банкет</a>
+    </div>
+  </div>
+</div>
+
+<div class="page" data-page="gallery" hidden>
+  <h2>Галерея</h2>
+  <div class="gal">
+    <div class="w2 h2" style="background:linear-gradient(160deg,#8a3f1e,#2a1408)">Главный зал «Алтын»</div>
+    <div style="background:linear-gradient(160deg,#c2412f,#3a130c)">Бешбармак</div>
+    <div style="background:linear-gradient(160deg,#e0a93a,#5a3d08)">Баурсаки</div>
+    <div class="w2" style="background:linear-gradient(160deg,#2c3a7a,#10163a)">Юрта на террасе</div>
+    <div style="background:linear-gradient(160deg,#6a7a3a,#1e240d)">Куырдак</div>
+    <div class="h2" style="background:linear-gradient(160deg,#7a2a4a,#200a14)">Сундет той</div>
+    <div class="w2" style="background:linear-gradient(160deg,#3a5a6a,#0e1a20)">Вечер домбры по пятницам</div>
+    <div style="background:linear-gradient(160deg,#b58a3a,#3a2a0a)">Самса из тандыра</div>
+  </div>
+</div>
+
+<div class="page" data-page="contacts" hidden>
+  <h2>Бронь стола</h2>
+  <div class="two">
+    <div style="display:grid;gap:24px;align-content:start">
+      <dl>
+        <dt>Адрес</dt><dd>Астана, ул. Кунаева 12/1</dd>
+        <dt>Часы</dt><dd>Ежедневно 11:00–00:00</dd>
+        <dt>Бронь</dt><dd>+7 700 000 00 00</dd>
+        <dt>Доставка</dt><dd>+7 700 000 00 02, Glovo, Wolt</dd>
+      </dl>
+      <p class="mute">Живая домбра по пятницам и субботам с 19:00. Детское меню и игровая комната.</p>
+      <a class="btn ghost" style="justify-self:start" href="https://2gis.kz/astana" target="_blank" rel="noopener">Открыть в 2ГИС</a>
+    </div>
+    <div>
+      <form class="f" id="book">
+        <h3>Забронировать</h3>
+        <div><div class="mute" style="font-size:14px;margin-bottom:8px">Гостей</div><div class="stepper"><button type="button" id="gm" aria-label="Меньше">−</button><b id="gv">4</b><button type="button" id="gp" aria-label="Больше">+</button></div></div>
+        <div class="grid2"><label>Дата<input type="date" id="date" required></label><label>Время<select id="time"></select></label></div>
+        <label>Зона<select id="zone"><option>Общий зал</option><option>Юрта на террасе</option><option>VIP-кабина (до 10 гостей)</option><option>У сцены</option></select></label>
+        <div class="grid2"><label>Имя<input id="name" required></label><label>Телефон<input id="phone" type="tel" required placeholder="+7"></label></div>
+        <label>Пожелания<textarea id="wish" rows="2" placeholder="День рождения, детский стульчик..."></textarea></label>
+        <button class="btn" type="submit">Забронировать</button>
+      </form>
+      <div class="ok" id="done" hidden><h3>Стол ваш</h3><p id="doneText"></p><button class="btn ghost" style="margin-top:18px" id="again">Новая бронь</button></div>
+    </div>
+  </div>
+</div>
+</main>
+<div class="orn" aria-hidden="true"></div>
+<footer><div class="wrap"><span>© 2026 Ресторан «Дастархан», Астана</span><span>Демо-сайт</span></div></footer>
+
+<button class="btn red fab" id="fab" hidden>Заказ <i id="fabN">0</i> <span id="fabS"></span></button>
+<div class="shade" id="shade" hidden></div>
+<aside class="drawer" id="drawer" aria-label="Ваш заказ">
+  <div class="head"><h3>Ваш заказ</h3><button class="x" id="close" aria-label="Закрыть">✕</button></div>
+  <div class="lines" id="lines"></div>
+  <div id="checkout">
+    <div class="tot"><span>Итого</span><span id="sum">0 ₸</span></div>
+    <div class="seg" id="mode"><button type="button" class="on" data-m="d">Доставка</button><button type="button" data-m="p">Самовывоз</button></div>
+    <form id="order" style="display:grid;gap:10px">
+      <input id="oaddr" placeholder="Адрес доставки" required>
+      <div class="grid2"><input id="oname" placeholder="Имя" required><input id="ophone" type="tel" placeholder="Телефон" required></div>
+      <button class="btn" type="submit">Оформить заказ</button>
+      <p class="mute" style="font-size:13px" id="dnote">Доставка 1 000 ₸, бесплатно от 15 000 ₸</p>
+    </form>
+  </div>
+  <div class="ok" id="odone" hidden style="background:var(--bg)"><h3>Заказ принят</h3><p id="odoneText"></p></div>
+</aside>
+
+<script>
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString('ru-RU').replace(/,/g,' ')+' ₸';
+const M={
+ "Национальные блюда":[["Бешбармак из конины","Казы, жая, тонкое тесто, сорпа",6900,"450 г",1,"#8a3f1e,#3a1608"],["Бешбармак из баранины","Классика на 1 персону",5900,"450 г",0,"#9a5a2e,#3a1a08"],["Куырдак","Печень, сердце, картофель, лук",4200,"350 г",1,"#6a3a1e,#241006"],["Казан-кебаб","Баранина с картофелем в казане",5200,"400 г",0,"#8a5a2e,#2a1a08"],["Бешбармак на компанию","Для 5–6 гостей, подаётся на табаке",29000,"2,5 кг",0,"#7a2e18,#2a0e06"]],
+ "Супы":[["Сорпа","Наваристый бульон с курутом",1900,"350 мл",0,"#b58a3a,#3a2a0a"],["Лагман суйру","Тянутая лапша, говядина, овощи",3200,"450 г",1,"#c2412f,#3a130c"],["Шорпа из баранины","",2900,"400 мл",0,"#a0602e,#301a08"]],
+ "Салаты и закуски":[["Казы-карта ассорти","Казы, карта, жал-жая",7900,"300 г",1,"#7a2a2a,#240a0a"],["Салат «Астана»","Говяжий язык, огурец, яйцо",2900,"250 г",0,"#5a7a3a,#1a240d"],["Ачичук","Томаты, лук, перец",1500,"200 г",0,"#c2412f,#3a130c"]],
+ "Выпечка":[["Баурсаки","Горячие, 10 штук",1200,"250 г",1,"#e0a93a,#5a3d08"],["Самса из тандыра","С бараниной",900,"1 шт",0,"#c78a3a,#3a2208"],["Чак-чак","С мёдом",1500,"200 г",0,"#e9b84a,#5a3a08"]],
+ "Напитки":[["Кумыс","Свежий, из Акмолинской области",1400,"500 мл",0,"#e8e2cf,#8a8470"],["Шубат","Верблюжье молоко",1600,"500 мл",0,"#efe6d0,#8e8468"],["Чай с молоком","Чайник на 4 пиалы",1800,"1 л",1,"#b5763a,#3a200a"],["Морс облепиховый","",1200,"1 л",0,"#f09a2a,#5a2a08"]]
+};
+const cats=Object.keys(M);
+const all=cats.flatMap(c=>M[c]);
+const byName=Object.fromEntries(all.map(d=>[d[0],d]));
+const cart={};
+function card([n,d,p,w,hit,g]){const q=cart[n]||0;return `<div class="dish-c"><div class="pic" style="background:radial-gradient(circle at 50% 55%,rgba(255,255,255,.18) 0 30%,transparent 31%),radial-gradient(circle at 30% 20%,rgba(255,255,255,.2),transparent 40%),linear-gradient(150deg,${g})">${hit?'<span class="hit">Хит</span>':''}</div><div class="in"><h3>${n}</h3><p class="d">${d||'&nbsp;'}</p><div class="row"><span class="p">${fmt(p)} <span class="w">· ${w}</span></span>${q?`<span class="qty"><button type="button" data-dec="${n}" aria-label="Убрать">−</button><b>${q}</b><button type="button" data-inc="${n}" aria-label="Добавить">+</button></span>`:`<button type="button" class="add" data-inc="${n}">В заказ</button>`}</div></div></div>`}
+let curCat=cats[0];
+function renderMenu(){$('#menuList').innerHTML=cats.map(c=>`<section style="margin-bottom:50px" data-sec="${c}"><h3 style="font-size:30px;margin-bottom:18px;color:var(--saffron)">${c}</h3><div class="mgrid">${M[c].map(card).join('')}</div></section>`).join('');$('#hits').innerHTML=all.filter(d=>d[4]).slice(0,4).map(card).join('')}
+$('#mtabs').innerHTML=cats.map((c,i)=>`<button type="button" class="${i?'':'on'}" data-c="${c}">${c}</button>`).join('');
+$('#mtabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#mtabs button').forEach(x=>x.classList.toggle('on',x===b));const s=document.querySelector(`[data-sec="${b.dataset.c}"]`);scrollTo({top:s.getBoundingClientRect().top+scrollY-150,behavior:'smooth'})});
+function renderCart(){const ks=Object.keys(cart);const n=ks.reduce((a,k)=>a+cart[k],0);const s=ks.reduce((a,k)=>a+cart[k]*byName[k][2],0);
+ $('#fab').hidden=!n;$('#fabN').textContent=n;$('#fabS').textContent=fmt(s);
+ $('#lines').innerHTML=ks.length?ks.map(k=>`<div class="line"><span>${k}</span><span class="p">${fmt(cart[k]*byName[k][2])}</span><span class="qty"><button type="button" data-dec="${k}">−</button><b>${cart[k]}</b><button type="button" data-inc="${k}">+</button></span></div>`).join(''):'<p class="mute">Пока пусто. Добавьте блюда из меню.</p>';
+ const del=$('#mode .on').dataset.m==='d'&&s<15000&&s>0?1000:0;$('#sum').textContent=fmt(s+del);$('#checkout').hidden=!n;renderMenu()}
+document.addEventListener('click',e=>{const i=e.target.closest('[data-inc]'),d=e.target.closest('[data-dec]');if(i){cart[i.dataset.inc]=(cart[i.dataset.inc]||0)+1;renderCart()}if(d){const k=d.dataset.dec;cart[k]--;if(!cart[k])delete cart[k];renderCart()}});
+function openD(o){$('#drawer').classList.toggle('open',o);$('#shade').hidden=!o}
+$('#fab').addEventListener('click',()=>{$('#odone').hidden=true;openD(true)});$('#close').addEventListener('click',()=>openD(false));$('#shade').addEventListener('click',()=>openD(false));
+$('#mode').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#mode button').forEach(x=>x.classList.toggle('on',x===b));const d=b.dataset.m==='d';$('#oaddr').hidden=!d;$('#oaddr').required=d;$('#dnote').textContent=d?'Доставка 1 000 ₸, бесплатно от 15 000 ₸':'Заберёте по адресу ул. Кунаева 12/1 через 30 минут';renderCart()});
+$('#order').addEventListener('submit',e=>{e.preventDefault();const d=$('#mode .on').dataset.m==='d';$('#odoneText').textContent=`${$('#oname').value}, заказ на ${$('#sum').textContent} ${d?'привезём за 60 минут по адресу '+$('#oaddr').value:'будет готов через 30 минут'}.`;Object.keys(cart).forEach(k=>delete cart[k]);renderCart();$('#checkout').hidden=true;$('#odone').hidden=false;$('#order').reset()});
+renderCart();
+
+// banquet
+const H=[["Алтын","до 250 гостей","Сцена, LED-экран, свой вход"],["Көк","до 80 гостей","Панорамные окна, отдельный бар"],["Юрта","до 30 гостей","Настоящая юрта на террасе, летом и зимой"]];
+let hall=0;
+$('#halls').innerHTML=H.map(([n,c,d],i)=>`<button type="button" class="hall ${i?'':'on'}" data-h="${i}"><h3>Зал «${n}»</h3><span style="color:var(--saffron)">${c}</span><span class="mute">${d}</span></button>`).join('');
+const MAXG=[250,80,30];const PK={12000:'Салаты, горячее, бешбармак, чай и десерт',16000:'Плюс казы-карта, фрукты, соки и торт',22000:'Плюс целый баран, премиум-напитки и декор'};
+function bcalc(){const g=$('#guests');g.max=MAXG[hall];if(+g.value>MAXG[hall])g.value=MAXG[hall];const n=+g.value,p=+$('#pkg .on').dataset.p;$('#gN').textContent=n;$('#bSum').textContent=fmt(n*p);$('#bNote').textContent=`${fmt(p)} на гостя · зал «${H[hall][0]}» без аренды`;$('#pkgInfo').textContent=PK[p]}
+$('#halls').addEventListener('click',e=>{const b=e.target.closest('.hall');if(!b)return;hall=+b.dataset.h;document.querySelectorAll('.hall').forEach(x=>x.classList.toggle('on',x===b));bcalc()});
+$('#pkg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#pkg button').forEach(x=>x.classList.toggle('on',x===b));bcalc()});
+$('#guests').addEventListener('input',bcalc);bcalc();
+
+// booking
+let gv=4;const upd=()=>$('#gv').textContent=gv;
+$('#gm').onclick=()=>{if(gv>1)gv--;upd()};$('#gp').onclick=()=>{if(gv<30)gv++;upd()};
+$('#time').innerHTML=Array.from({length:25},(_,i)=>{const h=11+Math.floor(i/2);return `<option>${h}:${i%2?'30':'00'}</option>`}).join('');$('#time').value='19:00';
+const today=new Date().toISOString().slice(0,10);$('#date').value=today;$('#date').min=today;
+$('#book').addEventListener('submit',e=>{e.preventDefault();$('#doneText').textContent=`${$('#name').value}, стол на ${gv} ${gv===1?'гостя':'гостей'} забронирован: ${new Date($('#date').value).toLocaleDateString('ru-RU',{day:'numeric',month:'long'})} в ${$('#time').value}, ${$('#zone').value.toLowerCase()}.`;$('#book').hidden=true;$('#done').hidden=false});
+$('#again').addEventListener('click',()=>{$('#book').reset();gv=4;upd();$('#date').value=today;$('#time').value='19:00';$('#book').hidden=false;$('#done').hidden=true});
+
+// router
+const pages=[...document.querySelectorAll('[data-page]')];
+function go(id){if(!pages.some(p=>p.dataset.page===id))id='home';pages.forEach(p=>p.hidden=p.dataset.page!==id);document.querySelectorAll('nav.links a').forEach(a=>a.classList.toggle('on',a.dataset.go===id));window.scrollTo({top:0});try{history.replaceState(null,'','#'+id)}catch(e){}$('#nav').classList.remove('open');$('#burger').setAttribute('aria-expanded','false')}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(a){e.preventDefault();go(a.dataset.go)}});
+$('#burger').addEventListener('click',()=>{const o=$('#nav').classList.toggle('open');$('#burger').setAttribute('aria-expanded',o)});
+go(location.hash.slice(1)||'home');
+</script>
+
+</body></html>

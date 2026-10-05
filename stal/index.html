@@ -1,0 +1,371 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Барбершоп Сталь</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@500;700;800;900&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: two-column hero (type left, spinning pole right); service ledger rows; booking console with live summary */
+:root{
+  --ink:#0F1420; --ink2:#171E2D; --steel:#28324A; --paper:#ECE9E1; --mute:#9AA3B5;
+  --brass:#D2AC62; --red:#C8342E; --blue:#2E56B0;
+  --display:"Alumni Sans","Arial Narrow",ui-sans-serif,sans-serif;
+  --body:"Golos Text",ui-sans-serif,system-ui,sans-serif;
+  --gut:clamp(16px,4vw,56px);
+  color-scheme:dark;
+}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+*{box-sizing:border-box}
+body{background:var(--ink);color:var(--paper);font:16px/1.6 var(--body);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.wrap{max-width:1260px;margin:0 auto;padding-inline:var(--gut)}
+
+.nav{position:fixed;inset:0 0 auto;z-index:20;padding-top:env(safe-area-inset-top,0px);background:linear-gradient(var(--ink),rgba(15,20,32,0))}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{font:900 34px/1 var(--display);letter-spacing:.02em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{width:10px;height:30px;border-radius:3px;background:repeating-linear-gradient(135deg,var(--red) 0 5px,var(--paper) 5px 9px,var(--blue) 9px 14px,var(--paper) 14px 18px)}
+.links{display:flex;gap:30px;font-weight:600;font-size:15px}
+.links a{text-decoration:none;color:var(--mute);transition:color .2s}.links a:hover{color:var(--paper)}
+@media (max-width:760px){.links{display:none}}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;background:var(--brass);color:var(--ink);font:700 15px/1 var(--body);border:0;border-radius:4px;cursor:pointer;text-decoration:none;transition:transform .25s cubic-bezier(.2,.8,.2,1),filter .2s}
+.btn:hover{filter:brightness(1.08)}
+.btn:hover svg{animation:snip .5s}
+.btn.line{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1.5px var(--steel)}
+@keyframes snip{0%,100%{transform:rotate(0)}25%{transform:rotate(-18deg) scale(1.1)}50%{transform:rotate(14deg)}75%{transform:rotate(-8deg)}}
+
+/* hero */
+.hero{padding-block:clamp(120px,16vh,170px) clamp(60px,9vh,110px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,5vw,80px);align-items:center}
+.hero h1{font:900 clamp(68px,13vw,200px)/.82 var(--display);text-transform:uppercase;margin:0;letter-spacing:-.005em}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln>span{display:inline-block}
+.hero h1 .br{color:var(--brass)}
+.hero p{max-width:44ch;color:var(--mute);font-size:clamp(16px,1.5vw,19px);margin:26px 0 34px}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap}
+.meta{display:flex;gap:clamp(20px,4vw,48px);margin-top:44px;flex-wrap:wrap}
+.meta b{display:block;font:800 44px/1 var(--display);color:var(--paper);font-variant-numeric:tabular-nums}
+.meta span{font-size:13px;color:var(--mute)}
+
+.pole{width:clamp(84px,11vw,140px);display:grid;justify-items:center;gap:0}
+.cap{width:118%;height:28px;border-radius:50% 50% 8px 8px/70% 70% 8px 8px;background:linear-gradient(90deg,#6E5525,#F0D594 40%,#9C7A36)}
+.cap.b{border-radius:8px 8px 50% 50%/8px 8px 70% 70%}
+.glass{position:relative;width:100%;height:clamp(300px,46vh,460px);border-radius:10px;overflow:hidden;background:repeating-linear-gradient(-35deg,var(--red) 0 22px,var(--paper) 22px 38px,var(--blue) 38px 60px,var(--paper) 60px 76px);background-size:100% 152px;box-shadow:inset 18px 0 22px rgba(0,0,0,.45),inset -14px 0 18px rgba(0,0,0,.4)}
+.glass::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,0) 18%,rgba(255,255,255,.55) 30%,rgba(255,255,255,0) 42%)}
+@media (max-width:640px){.hero .wrap{grid-template-columns:1fr}.pole{display:none}}
+
+/* strip */
+.strip{background:var(--brass);color:var(--ink);overflow:hidden;transform:rotate(-2deg);margin-block:20px;padding-block:14px}
+.strip .track{display:flex;width:max-content;gap:40px;font:800 clamp(26px,3vw,40px)/1 var(--display);text-transform:uppercase;will-change:transform}
+.strip .track span{display:flex;gap:40px;white-space:nowrap;align-items:center}
+.strip svg{width:26px;height:26px}
+
+section{padding-block:clamp(80px,11vw,150px)}
+.h2{font:900 clamp(52px,8vw,112px)/.86 var(--display);text-transform:uppercase;margin:0 0 18px;text-wrap:balance}
+.lead{color:var(--mute);max-width:56ch;margin:0;font-size:17px}
+
+/* services ledger */
+.ledger{margin-top:50px;border-top:1px solid var(--steel)}
+.svc{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 110px 130px 44px;align-items:center;gap:16px;padding:24px 8px;border-bottom:1px solid var(--steel);overflow:hidden;isolation:isolate;cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;color:inherit;text-align:left;width:100%;font:inherit}
+.svc::before{content:"";position:absolute;inset:0;background:var(--ink2);transform:scaleY(0);transform-origin:bottom;transition:transform .45s cubic-bezier(.7,0,.2,1);z-index:-1}
+.svc:hover::before{transform:scaleY(1)}
+.svc .nm{display:block;margin:0;font:800 clamp(30px,3.6vw,48px)/1 var(--display);text-transform:uppercase;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.svc:hover .nm{transform:translateX(14px)}
+.svc small{display:block;color:var(--mute);font-size:14px;margin-top:6px}
+.svc .t,.svc .p{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.svc .t{color:var(--mute)}
+.svc .p{font-size:18px;color:var(--brass);text-align:right}
+.svc .go{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--steel);transition:background .3s,transform .3s}
+.svc:hover .go{background:var(--brass);color:var(--ink);transform:rotate(-45deg)}
+@media (max-width:700px){.svc{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px}.svc .t{grid-row:2}.svc .go{display:none}}
+
+/* masters */
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.5vw,28px);margin-top:50px}
+@media (max-width:900px){.team{grid-template-columns:1fr}}
+.m{background:var(--ink2);border:1px solid var(--steel);border-radius:6px;overflow:hidden;min-width:0}
+.m .ph{aspect-ratio:4/3.4;max-width:100%;position:relative;overflow:hidden}
+.m .ph svg{width:100%;height:100%;display:block;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.m:hover .ph svg{transform:scale(1.06)}
+.m .tx{padding:22px}
+.m h3{margin:0;font:800 36px/1 var(--display);text-transform:uppercase}
+.m p{margin:8px 0 14px;color:var(--mute);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:13px;font-weight:600;padding:5px 10px;border-radius:3px;background:var(--steel)}
+
+/* booking console */
+.console{margin-top:50px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start}
+@media (max-width:960px){.console{grid-template-columns:1fr}}
+.step{margin-bottom:34px}
+.step h4{margin:0 0 14px;font:800 26px/1 var(--display);text-transform:uppercase;color:var(--mute)}
+.step h4 b{color:var(--brass);margin-right:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--steel);background:transparent;color:var(--paper);font:600 15px var(--body);padding:11px 16px;border-radius:4px;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .15s}
+.chip:hover{border-color:var(--mute)}
+.chip:active{transform:scale(.96)}
+.chip[aria-pressed="true"]{background:var(--brass);border-color:var(--brass);color:var(--ink)}
+.chip:disabled{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+.chip.day{display:grid;text-align:center;min-width:64px;line-height:1.2}
+.chip.day small{font-size:12px;opacity:.8}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px}
+.sum{position:sticky;top:calc(90px + env(safe-area-inset-top,0px));background:var(--paper);color:var(--ink);border-radius:6px;padding:26px}
+.sum h4{margin:0 0 16px;font:900 34px/1 var(--display);text-transform:uppercase}
+.sum dl{margin:0;display:grid;gap:10px}
+.sum dl div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #BDB7A8;padding-bottom:10px}
+.sum dt{color:#5C6475;font-size:14px}
+.sum dd{margin:0;font-weight:700;text-align:right}
+.sum .tot{display:flex;justify-content:space-between;align-items:baseline;margin:18px 0}
+.sum .tot b{font:900 48px/1 var(--display);font-variant-numeric:tabular-nums}
+.sum .btn{width:100%;justify-content:center;background:var(--ink);color:var(--paper)}
+.sum .msg{margin-top:12px;font-size:14px;font-weight:600}
+.shake{animation:shk .45s}
+@keyframes shk{20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+
+footer{border-top:1px solid var(--steel);padding-block:40px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* bento hero */
+.hero .wrap.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"t t t c" "t t t c" "w w p h";gap:12px;align-items:stretch}
+.cell{position:relative;border-radius:6px;overflow:hidden;background:var(--ink2);min-width:0;margin:0}
+.cell.title{grid-area:t;padding:clamp(22px,3vw,44px);border:1px solid var(--steel)}
+.cell.title h1{font-size:clamp(56px,8.4vw,132px)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);transition:filter .7s,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.ph:hover img{filter:grayscale(0);transform:scale(1.06)}
+.ph figcaption{position:absolute;left:12px;bottom:12px;background:var(--paper);color:var(--ink);font-size:13px;font-weight:600;padding:7px 12px;border-radius:3px;transition:transform .4s}
+.ph:hover figcaption{transform:rotate(-3deg)}
+.cut{grid-area:c;min-height:420px}.wide{grid-area:w;height:300px}.chair{grid-area:h;height:300px}
+.polecell{grid-area:p;height:300px;display:grid;place-items:center;border:1px solid var(--steel)}
+.polecell .pole{width:76px}.polecell .glass{height:210px}
+@media (max-width:900px){.hero .wrap.bento{grid-template-columns:1fr 1fr;grid-template-areas:"t t" "c c" "w w" "p h"}.cut{min-height:380px}}
+@media (max-width:560px){.hero .wrap.bento{grid-template-columns:1fr;grid-template-areas:"t" "c" "w" "h"}.polecell{display:none}}
+/* masters stack while scrolling */
+.team{display:grid;grid-template-columns:1fr;gap:28px}
+.m{position:sticky;top:calc(96px + var(--i) * 26px + env(safe-area-inset-top,0px));display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);box-shadow:0 -20px 40px -20px rgba(0,0,0,.6)}
+.m .ph2{min-height:280px;position:relative}
+.m .ph2 svg{position:absolute;inset:0;width:100%;height:100%}
+.m .tx{display:grid;align-content:center;padding:clamp(22px,3vw,40px)}
+.m h3{font-size:clamp(44px,5vw,72px)}
+@media (max-width:700px){.m{grid-template-columns:1fr;position:relative;top:auto}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top"><i></i>СТАЛЬ</a>
+  <nav class="links"><a href="#svc">Услуги</a><a href="#team">Мастера</a><a href="#book">Запись</a></nav>
+  <a class="btn" href="#book" data-magnet>Записаться</a>
+</div></header>
+
+<main id="top">
+  <section class="hero"><div class="wrap bento">
+    <div class="cell title">
+      <h1 aria-label="Стрижка, что держит форму"><span class="ln"><span>Стрижка,</span></span><span class="ln"><span>что держит</span></span><span class="ln"><span class="br">форму</span></span></h1>
+      <p>Мужской барбершоп на Сарыарке. Стрижём ножницами и машинкой, бреем опасной бритвой и закладываем на каждого гостя целый час.</p>
+      <div class="row">
+        <a class="btn" href="#book" data-magnet>Выбрать время <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg></a>
+        <a class="btn line" href="#svc" data-magnet>Цены</a>
+      </div>
+      <div class="meta">
+        <div><b data-count="9">0</b><span>лет на Сарыарке</span></div>
+        <div><b data-count="21">0</b><span>день держится фейд</span></div>
+        <div><b data-count="3">0</b><span>мастера в смене</span></div>
+      </div>
+    </div>
+    <figure class="cell ph cut"><img src="../img/cut.jpg" alt="Барбер стрижёт клиента ножницами"><figcaption>Ножницы и расчёска, без спешки</figcaption></figure>
+    <figure class="cell ph wide"><img src="../img/barbershop.jpg" alt="Зал барбершопа с креслами"><figcaption>Три кресла, вечером приглушённый свет</figcaption></figure>
+    <div class="cell polecell" aria-hidden="true"><div class="pole"><div class="cap"></div><div class="glass" id="glass"></div><div class="cap b"></div></div></div>
+    <figure class="cell ph chair"><img src="../img/chair.jpg" alt="Винтажное барберское кресло у окна"><figcaption>Кресло 1962 года</figcaption></figure>
+  </div></section>
+
+  <div class="strip" aria-hidden="true"><div class="track" id="strip">
+    <span>Горячее полотенце <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg> Опасная бритва <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg> Укладка глиной <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg></span>
+    <span>Горячее полотенце <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg> Опасная бритва <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg> Укладка глиной <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg></span>
+  </div></div>
+
+  <section id="svc"><div class="wrap">
+    <h2 class="h2" data-rv>Услуги и цены</h2>
+    <p class="lead" data-rv>Нажмите на услугу, и она сразу появится в записи.</p>
+    <div class="ledger" id="ledger"></div>
+  </div></section>
+
+  <section id="team" style="padding-top:0"><div class="wrap">
+    <h2 class="h2" data-rv>Мастера</h2>
+    <p class="lead" data-rv>У каждого своя специализация. Если не знаете, к кому идти, выберите «Любой свободный».</p>
+    <div class="team" id="teamGrid"></div>
+  </div></section>
+
+  <section id="book" style="padding-top:0"><div class="wrap">
+    <h2 class="h2" data-rv>Запись</h2>
+    <p class="lead" data-rv>Четыре шага, около минуты.</p>
+    <div class="console">
+      <div>
+        <div class="step"><h4><b>1</b>Услуга</h4><div class="chips" id="cSvc"></div></div>
+        <div class="step"><h4><b>2</b>Мастер</h4><div class="chips" id="cM"></div></div>
+        <div class="step"><h4><b>3</b>День</h4><div class="chips" id="cD"></div></div>
+        <div class="step"><h4><b>4</b>Время</h4><div class="slots" id="cT"></div></div>
+      </div>
+      <aside class="sum" id="sum" aria-live="polite">
+        <h4>Ваш визит</h4>
+        <dl>
+          <div><dt>Услуга</dt><dd id="sS">—</dd></div>
+          <div><dt>Мастер</dt><dd id="sM">—</dd></div>
+          <div><dt>Когда</dt><dd id="sW">—</dd></div>
+          <div><dt>Длительность</dt><dd id="sL">—</dd></div>
+        </dl>
+        <div class="tot"><span>Итого</span><b id="sP">0 ₸</b></div>
+        <button class="btn" id="go" type="button">Подтвердить запись</button>
+        <div class="msg" id="msg"></div>
+      </aside>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Барбершоп Сталь, Астана</span><span>Концепт-сайт для портфолио. Бренд вымышлен. Фото: Unsplash.</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE = matchMedia('(pointer: fine)').matches;
+const fmt = n => n.toLocaleString('ru-RU') + ' ₸';
+
+const SVC = [
+  ['Мужская стрижка', 'Консультация, мытьё, стрижка, укладка', 60, 7000],
+  ['Фейд', 'Плавный переход от нуля, контур бритвой', 60, 8000],
+  ['Королевское бритьё', 'Горячее полотенце, опасная бритва, бальзам', 45, 6000],
+  ['Борода', 'Форма, контур, масло для бороды', 30, 4500],
+  ['Отец и сын', 'Две стрижки в одно время, сын до 12 лет', 90, 11000],
+  ['Камуфляж седины', 'Тонирование волос или бороды', 30, 5000]
+];
+const TEAM = [
+  ['Ерлан', 'Старший мастер, 11 лет', ['фейды', 'классика', 'бритьё'], 1.2, '#2E56B0'],
+  ['Тимур', 'Мастер, 6 лет', ['текстура', 'кроп', 'борода'], 1, '#C8342E'],
+  ['Данияр', 'Мастер, 4 года', ['детские', 'андеркат', 'камуфляж'], 1, '#D2AC62']
+];
+
+/* smooth scroll + velocity */
+let lenis = null, vel = 0;
+if (!RM && window.Lenis) {
+  lenis = new Lenis({ lerp: 0.085 });
+  lenis.on('scroll', e => { vel = e.velocity; });
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+  } else { const r = t => { lenis.raf(t); requestAnimationFrame(r); }; requestAnimationFrame(r); }
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const el = document.querySelector(a.getAttribute('href')); if (!el) return; e.preventDefault();
+  lenis ? lenis.scrollTo(el, { offset: -80, duration: 1.4 }) : el.scrollIntoView({ behavior: 'smooth' });
+}));
+
+/* pole spin + strip marquee, both speed up with scroll velocity */
+(() => {
+  const g = document.getElementById('glass'), s = document.getElementById('strip');
+  let pos = 0, x = 0, boost = 0;
+  function tick() {
+    boost += (Math.min(Math.abs(vel), 60) - boost) * .08;
+    pos = (pos + .6 + boost * .5) % 152;
+    g.style.backgroundPosition = `0 ${pos}px`;
+    const half = s.scrollWidth / 2;
+    x -= .7 + boost * .35; if (-x >= half) x += half;
+    s.style.transform = `translateX(${x}px) skewX(${Math.max(-12, Math.min(12, -vel * .4))}deg)`;
+    requestAnimationFrame(tick);
+  }
+  if (!RM) requestAnimationFrame(tick);
+})();
+
+/* magnetic */
+function magnet(root) {
+  if (RM || !FINE) return;
+  root.querySelectorAll('[data-magnet]').forEach(el => {
+    el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .25}px,${(e.clientY - r.top - r.height / 2) * .4}px)`; });
+    el.addEventListener('pointerleave', () => el.style.transform = '');
+  });
+}
+magnet(document);
+
+/* portraits: geometric monograms */
+function portrait(name, col, i) {
+  const hair = ['M70 92c0-38 28-58 60-58s60 20 60 58c-14-16-30-20-60-20s-46 4-60 20Z', 'M66 100c-4-44 26-70 64-70 40 0 70 26 62 72-10-24-34-36-62-36s-54 10-64 34Z', 'M74 90c4-30 28-48 56-48s52 18 56 48c-18-8-36-12-56-12s-38 4-56 12Z'][i];
+  const beard = ['M88 150c6 34 24 48 42 48s36-14 42-48c-12 10-26 14-42 14s-30-4-42-14Z', 'M92 156c4 20 20 32 38 32s34-12 38-32c-10 6-24 9-38 9s-28-3-38-9Z', ''][i];
+  return `<svg viewBox="0 0 260 220" role="img" aria-label="Иллюстрация: мастер ${name}">
+    <rect width="260" height="220" fill="#171E2D"/>
+    <circle cx="200" cy="40" r="90" fill="${col}" opacity=".9"/>
+    <text x="16" y="210" font-family="Alumni Sans, sans-serif" font-weight="900" font-size="120" fill="#ECE9E1" opacity=".07">${name.toUpperCase()}</text>
+    <path d="M60 220c4-40 34-58 70-58s66 18 70 58Z" fill="#0F1420"/>
+    <ellipse cx="130" cy="112" rx="50" ry="60" fill="#C99A78"/>
+    <path d="${hair}" fill="#1B1410"/>
+    ${beard ? `<path d="${beard}" fill="#1B1410"/>` : ''}
+    <path d="M110 112h10M140 112h10" stroke="#1B1410" stroke-width="4" stroke-linecap="round"/>
+  </svg>`;
+}
+
+/* render ledger + team */
+const ledger = document.getElementById('ledger');
+ledger.innerHTML = SVC.map(([n, d, t, p], i) => `<button class="svc" data-i="${i}"><span><span class="nm">${n}</span><small>${d}</small></span><span class="t">${t} мин</span><span class="p">от ${fmt(p)}</span><span class="go" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>`).join('');
+document.getElementById('teamGrid').innerHTML = TEAM.map(([n, r, tags, k, c], i) => `<article class="m" style="--i:${i}"><div class="ph2">${portrait(n, c, i)}</div><div class="tx"><h3>${n}</h3><p>${r}${k > 1 ? ', цена ×1,2' : ''}</p><div class="tags">${tags.map(t => `<span>${t}</span>`).join('')}</div></div></article>`).join('');
+
+/* booking */
+const st = { s: 0, m: -1, d: 0, t: null };
+const cSvc = document.getElementById('cSvc'), cM = document.getElementById('cM'), cD = document.getElementById('cD'), cT = document.getElementById('cT');
+const days = Array.from({ length: 7 }, (_, i) => { const d = new Date(); d.setDate(d.getDate() + i); return d; });
+const wd = d => d.toLocaleDateString('ru-RU', { weekday: 'short' });
+function busy(day, h, m) { return ((day * 7 + h * 3 + m + (st.m + 2) * 5) % 5) === 0; }
+function chips(el, arr, key) {
+  el.innerHTML = arr.map((h, i) => `<button class="chip${key === 'd' ? ' day' : ''}" aria-pressed="${st[key] === i - (key === 'm' ? 1 : 0)}" data-v="${i - (key === 'm' ? 1 : 0)}">${h}</button>`).join('');
+  el.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => { st[key] = +b.dataset.v; if (key !== 't') st.t = null; render(); }));
+}
+function render() {
+  chips(cSvc, SVC.map(s => s[0]), 's');
+  chips(cM, ['Любой свободный', ...TEAM.map(t => t[0])], 'm');
+  chips(cD, days.map((d, i) => `${i === 0 ? 'Сегодня' : i === 1 ? 'Завтра' : wd(d)}<small>${d.getDate()}.${String(d.getMonth() + 1).padStart(2, '0')}</small>`), 'd');
+  const now = new Date(); let html = '';
+  for (let h = 10; h <= 20; h++) for (const m of [0, 30]) {
+    const past = st.d === 0 && (h < now.getHours() || (h === now.getHours() && m <= now.getMinutes()));
+    const lbl = `${h}:${m ? '30' : '00'}`;
+    html += `<button class="chip" data-t="${lbl}" aria-pressed="${st.t === lbl}" ${past || busy(st.d, h, m) ? 'disabled' : ''}>${lbl}</button>`;
+  }
+  cT.innerHTML = html;
+  cT.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => { st.t = b.dataset.t; render(); }));
+  const s = SVC[st.s], k = st.m >= 0 ? TEAM[st.m][3] : 1;
+  document.getElementById('sS').textContent = s[0];
+  document.getElementById('sM').textContent = st.m >= 0 ? TEAM[st.m][0] : 'Любой свободный';
+  document.getElementById('sW').textContent = st.t ? `${days[st.d].toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })}, ${st.t}` : 'выберите время';
+  document.getElementById('sL').textContent = s[2] + ' мин';
+  const tot = document.getElementById('sP'), val = Math.round(s[3] * k / 100) * 100;
+  if (!RM && window.gsap) { const o = { v: parseInt(tot.textContent.replace(/\D/g, '')) || 0 }; gsap.to(o, { v: val, duration: .5, ease: 'power2.out', onUpdate: () => tot.textContent = fmt(Math.round(o.v / 100) * 100) }); }
+  else tot.textContent = fmt(val);
+  document.getElementById('msg').textContent = '';
+}
+ledger.querySelectorAll('.svc').forEach(b => b.addEventListener('click', () => {
+  st.s = +b.dataset.i; render();
+  const el = document.getElementById('book');
+  lenis ? lenis.scrollTo(el, { offset: -80, duration: 1.4 }) : el.scrollIntoView({ behavior: 'smooth' });
+}));
+document.getElementById('go').addEventListener('click', () => {
+  const msg = document.getElementById('msg'), sum = document.getElementById('sum');
+  if (!st.t) { msg.textContent = 'Сначала выберите время в шаге 4.'; sum.classList.remove('shake'); void sum.offsetWidth; sum.classList.add('shake'); return; }
+  msg.textContent = 'Готово, запись создана. Это демо: на реальном сайте сюда придёт подтверждение в WhatsApp.';
+  if (!RM && window.gsap) gsap.fromTo(sum, { scale: .97 }, { scale: 1, duration: .6, ease: 'back.out(3)' });
+});
+render();
+
+/* entrance + reveals + counters */
+if (!RM && window.gsap) {
+  gsap.from('.hero h1 .ln>span', { yPercent: 100, duration: 1.1, ease: 'expo.out', stagger: .1 });
+  gsap.from('.cell', { y: 60, duration: 1.2, ease: 'expo.out', stagger: .07 });
+  if (window.ScrollTrigger) {
+    gsap.utils.toArray('[data-rv]').forEach(el => gsap.from(el, { y: 50, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%' } }));
+    gsap.from('.svc', { x: -40, duration: .9, ease: 'expo.out', stagger: .06, scrollTrigger: { trigger: '#ledger', start: 'top 85%' } });
+  }
+}
+document.querySelectorAll('[data-count]').forEach(el => {
+  const v = +el.dataset.count;
+  if (RM || !window.gsap) { el.textContent = v; return; }
+  const o = { v: 0 }; gsap.to(o, { v, duration: 1.8, ease: 'power3.out', delay: .5, onUpdate: () => el.textContent = Math.round(o.v) });
+});
+</script>
+
+</body></html>

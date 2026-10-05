@@ -1,0 +1,427 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>ЖК Есиль Парк</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: architectural, generous whitespace; hero = tower drawn floor by floor whose sky turns to dusk and windows light as you scroll; plans + mortgage as working tools */
+:root{
+  --stone:#E6E7E3; --paper:#F4F4F1; --ink:#10303A; --ink2:#2E4C55; --mute:#6C7F84; --rule:#C9CFCC;
+  --brass:#A9824A; --river:#7FA2AC;
+  --display:"Cormorant Garamond","Times New Roman",serif;
+  --body:"Jost",ui-sans-serif,system-ui,sans-serif;
+  --gut:clamp(16px,4vw,64px);
+}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+*{box-sizing:border-box}
+body{background:var(--stone);color:var(--ink);font:300 17px/1.65 var(--body);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:var(--gut)}
+
+.nav{position:fixed;inset:0 0 auto;z-index:20;padding-top:env(safe-area-inset-top,0px);transition:background .4s,box-shadow .4s}
+.nav:not(.solid){color:var(--paper)}
+.nav:not(.solid) .btn{background:var(--paper);color:var(--ink)}
+.nav:not(.solid) .links a,.nav:not(.solid) .logo small{color:rgba(244,244,241,.85)}
+.nav.solid{background:rgba(230,231,227,.9);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--rule)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;height:76px;gap:16px}
+.logo{font:500 26px/1 var(--display);text-decoration:none;letter-spacing:.01em}
+.logo small{font:400 12px var(--body);letter-spacing:.2em;display:block;color:var(--mute);margin-top:2px}
+.links{display:flex;gap:34px;font-size:15px;font-weight:400}
+.links a{text-decoration:none;color:var(--ink2)}
+.links a:hover{color:var(--brass)}
+@media (max-width:820px){.links{display:none}}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:16px 28px;background:var(--ink);color:var(--paper);font:500 15px/1 var(--body);letter-spacing:.02em;border:0;cursor:pointer;text-decoration:none;position:relative;overflow:hidden;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.btn::before{content:"";position:absolute;inset:0;background:var(--brass);transform:translateY(101%);transition:transform .5s cubic-bezier(.7,0,.2,1)}
+.btn:hover::before{transform:translateY(0)}
+.btn span{position:relative}
+.btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.btn.line:hover{color:var(--paper)}
+
+/* hero */
+.hero{position:relative;padding-block:clamp(110px,14vh,150px) 0}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,64px);align-items:end}
+@media (max-width:900px){.hero .grid{grid-template-columns:1fr}}
+.hero h1{font:400 clamp(54px,8.4vw,128px)/.92 var(--display);margin:0;letter-spacing:-.015em;text-wrap:balance}
+.hero h1 i{color:var(--brass)}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.05em}
+.hero h1 .ln>span{display:inline-block}
+.hero p{max-width:44ch;color:var(--ink2);margin:26px 0 34px}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:clamp(30px,5vw,60px)}
+.scene{position:relative;aspect-ratio:1/1.02;max-width:100%;overflow:hidden}
+#tower{width:100%;height:100%;display:block}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink);margin-top:0}
+@media (max-width:760px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.facts div{padding:22px 18px 26px 0;min-width:0}
+.facts b{display:block;font:500 clamp(28px,3vw,42px)/1.05 var(--display);font-variant-numeric:lining-nums tabular-nums}
+.facts span{font-size:14px;color:var(--mute)}
+
+section{padding-block:clamp(90px,11vw,160px)}
+.h2{font:400 clamp(42px,5.6vw,84px)/.98 var(--display);margin:0 0 18px;letter-spacing:-.01em;text-wrap:balance}
+.lead{color:var(--ink2);max-width:56ch;margin:0}
+
+/* plans */
+.plans{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);margin-top:54px;align-items:start}
+@media (max-width:940px){.plans{grid-template-columns:1fr}}
+.ptabs{display:flex;gap:0;border-bottom:1px solid var(--rule);margin-bottom:28px;flex-wrap:wrap}
+.ptab{background:none;border:0;padding:12px 20px 14px;font:400 16px var(--body);color:var(--mute);cursor:pointer;position:relative}
+.ptab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--brass);transform:scaleX(0);transition:transform .45s cubic-bezier(.7,0,.2,1)}
+.ptab[aria-selected="true"]{color:var(--ink)}
+.ptab[aria-selected="true"]::after{transform:scaleX(1)}
+.planbox{background:var(--paper);padding:clamp(18px,3vw,36px);min-width:0}
+#planSvg{width:100%;height:auto;display:block}
+#planSvg .room{fill:#FBFBF8;stroke:var(--ink);stroke-width:.6;transition:fill .3s}
+#planSvg .room.wet{fill:#EEF3F3}
+#planSvg .room.out{fill:#F1EDE4;stroke-dasharray:1.4 1}
+#planSvg .room.hot{fill:#E9DCC4}
+#planSvg text{font-family:var(--body);fill:var(--ink)}
+.pinfo h3{font:400 clamp(34px,3.4vw,50px)/1 var(--display);margin:0 0 6px}
+.pinfo .sub{color:var(--mute);margin:0 0 26px}
+.rooms{list-style:none;margin:0 0 28px;padding:0;border-top:1px solid var(--rule)}
+.rooms li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--rule);cursor:default;transition:padding .3s,color .3s}
+.rooms li span:last-child{font-variant-numeric:tabular-nums}
+.rooms li.hot{padding-left:10px;color:var(--brass)}
+.price{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.price b{font:500 clamp(34px,3.4vw,46px)/1 var(--display);font-variant-numeric:lining-nums tabular-nums}
+.price span{color:var(--mute);font-size:14px}
+
+/* mortgage */
+.mort{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;margin-top:54px;background:var(--ink);color:var(--paper)}
+@media (max-width:900px){.mort{grid-template-columns:1fr}}
+.mort .in{padding:clamp(24px,4vw,56px);display:grid;gap:30px}
+.mort .out{padding:clamp(24px,4vw,56px);background:var(--ink2);display:grid;gap:22px;align-content:start}
+.fld{display:grid;gap:12px}
+.fld .top{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:#A9BCC0}
+.fld output{font:500 26px/1 var(--display);color:var(--paper);font-variant-numeric:lining-nums tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:#4E6A72;outline-offset:8px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--brass);border:5px solid var(--ink);box-shadow:0 0 0 1px var(--brass);cursor:grab}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--brass);border:5px solid var(--ink);cursor:grab}
+.out .big{font:500 clamp(48px,6vw,84px)/1 var(--display);font-variant-numeric:lining-nums tabular-nums}
+.out .k{font-size:14px;color:#A9BCC0}
+.split{height:12px;display:flex;background:#4E6A72}
+.split i{display:block;height:100%;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.legend{display:flex;gap:24px;flex-wrap:wrap;font-size:14px}
+.legend b{display:block;font:500 24px var(--display);font-variant-numeric:lining-nums tabular-nums}
+.legend em{display:inline-block;width:10px;height:10px;margin-right:8px;font-style:normal}
+.out .note{font-size:13px;color:#A9BCC0;margin:0}
+
+/* location */
+.loc{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);margin-top:54px;align-items:center}
+@media (max-width:900px){.loc{grid-template-columns:1fr}}
+#map{width:100%;height:auto;display:block;background:var(--paper)}
+.walk{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.walk li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:16px 0;border-bottom:1px solid var(--rule);cursor:default}
+.walk li b{font:500 26px/1 var(--display);font-variant-numeric:lining-nums tabular-nums}
+.walk li small{display:block;color:var(--mute);font-size:14px}
+.walk li:hover{color:var(--brass)}
+
+/* visit */
+.visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
+@media (max-width:900px){.visit{grid-template-columns:1fr}}
+.visit form{display:grid;gap:14px}
+.visit input,.visit select{font:400 17px var(--body);padding:16px 0;border:0;border-bottom:1px solid var(--ink);background:transparent;color:var(--ink);width:100%;border-radius:0}
+.visit input:focus,.visit select:focus{outline:none;border-color:var(--brass)}
+.visit .ok{color:var(--brass);font-weight:500}
+.shake{animation:shk .45s}
+@keyframes shk{20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+
+footer{padding-block:40px;border-top:1px solid var(--rule);color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* arch reveal */
+.reveal{position:relative;height:260svh}
+.rstick{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;place-items:center}
+.rbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.rstick::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,48,58,.55),rgba(16,48,58,.15) 40%,rgba(16,48,58,.5));pointer-events:none}
+.arch{position:absolute;left:50%;top:54%;width:min(34vw,380px);height:min(58svh,560px);transform:translate(-50%,-50%);border-radius:999px 999px 0 0;overflow:hidden;z-index:2;will-change:width,height,border-radius}
+.arch img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.rt{position:absolute;z-index:3;inset:0;margin:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.1em;font:400 clamp(44px,8.6vw,140px)/.95 var(--display);color:var(--paper);letter-spacing:-.015em;text-align:center;pointer-events:none;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.rt span{display:block;will-change:transform}
+.rt i{color:#E9C88E}
+.rhint{position:absolute;z-index:3;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);color:var(--paper);font-size:14px;margin:0;letter-spacing:.06em}
+@media (max-width:700px){.arch{width:62vw;height:52svh}}
+.intro{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;padding-block:clamp(50px,7vw,90px) clamp(30px,4vw,50px)}
+.intro p{margin:0;max-width:46ch;font-size:clamp(18px,1.6vw,22px);color:var(--ink2)}
+.intro .row{display:flex;gap:12px;flex-wrap:wrap}
+/* drag panorama */
+.pano{padding-top:clamp(70px,9vw,120px)}
+.pframe{position:relative;margin-top:36px;height:min(70svh,620px);overflow:hidden;cursor:grab;touch-action:pan-y;background:var(--paper)}
+.pframe:active{cursor:grabbing}
+.ptrack{position:absolute;top:0;left:0;height:100%;aspect-ratio:1600/1067;will-change:transform}
+.ptrack img{width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none}
+.hot{position:absolute;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:0;background:rgba(244,244,241,.35);backdrop-filter:blur(6px);cursor:pointer;display:grid;place-items:center}
+.hot i{width:14px;height:14px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 0 rgba(244,244,241,.8);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 16px rgba(244,244,241,0)}100%{box-shadow:0 0 0 0 rgba(244,244,241,0)}}
+.hot::after{content:attr(data-t);position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%) translateY(6px);white-space:nowrap;background:var(--ink);color:var(--paper);font:400 14px var(--body);padding:8px 12px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none}
+.hot:hover::after,.hot:focus-visible::after,.hot.on::after{opacity:1;transform:translateX(-50%)}
+.ptip{position:absolute;right:16px;bottom:16px;background:var(--paper);padding:8px 14px;font-size:14px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="nav" id="nav"><div class="wrap">
+  <a class="logo" href="#top">Есиль Парк<small>ЖИЛОЙ КОМПЛЕКС</small></a>
+  <nav class="links"><a href="#plans">Планировки</a><a href="#mort">Ипотека</a><a href="#loc">Расположение</a><a href="#visit">Шоурум</a></nav>
+  <a class="btn" href="#visit" data-magnet><span>Записаться на просмотр</span></a>
+</div></header>
+
+<main id="top">
+  <section class="reveal" id="reveal">
+    <div class="rstick">
+      <img class="rbg" src="../img/river.jpg" alt="Вечерний город у реки" id="rbg">
+      <div class="arch" id="arch"><img src="../img/tower.jpg" alt="Белая башня жилого комплекса" id="archImg"></div>
+      <h1 class="rt" aria-label="Дом, где окна смотрят на Есиль"><span class="w1">Дом, где окна</span><span class="w2">смотрят <i>на Есиль</i></span></h1>
+      <p class="rhint" id="rhint">Листайте, дом откроется</p>
+    </div>
+  </section>
+  <div class="wrap">
+    <div class="intro">
+      <p>Две башни бизнес-класса в 300 метрах от набережной. Потолки 3,1 м, закрытый двор без машин и свой парк на 1,2 гектара.</p>
+      <div class="row"><a class="btn" href="#plans" data-magnet><span>Выбрать квартиру</span></a><a class="btn line" href="#mort" data-magnet><span>Рассчитать ипотеку</span></a></div>
+    </div>
+    <div class="facts">
+      <div><b>IV кв. 2027</b><span>сдача первой очереди</span></div>
+      <div><b>24 этажа</b><span>две башни, 376 квартир</span></div>
+      <div><b>от 520 000 ₸</b><span>за квадратный метр</span></div>
+      <div><b>4 минуты</b><span>пешком до набережной</span></div>
+    </div>
+  </div>
+  <section class="pano"><div class="wrap">
+    <h2 class="h2" data-rv>Загляните внутрь</h2>
+    <p class="lead" data-rv>Перетащите комнату влево или вправо. Точки рассказывают о деталях отделки.</p>
+    <div class="pframe" id="pframe">
+      <div class="ptrack" id="ptrack">
+        <img src="../img/living.jpg" alt="Гостиная в квартире с отделкой" draggable="false">
+        <button class="hot" style="left:18%;top:30%" data-t="Потолки 3,1 м и скрытые карнизы"><i></i></button>
+        <button class="hot" style="left:48%;top:66%" data-t="Инженерная доска из дуба"><i></i></button>
+        <button class="hot" style="left:66%;top:22%" data-t="Окна в пол с видом во двор"><i></i></button>
+        <button class="hot" style="left:86%;top:58%" data-t="Тёплый пол во всех комнатах"><i></i></button>
+      </div>
+      <span class="ptip" id="ptip">Тяните</span>
+    </div>
+  </div></section>
+
+  <section id="plans"><div class="wrap">
+    <h2 class="h2" data-rv>Планировки</h2>
+    <p class="lead" data-rv>Наведите на комнату на плане или в списке, чтобы увидеть её площадь. Цена указана для 12-го этажа.</p>
+    <div class="plans">
+      <div>
+        <div class="ptabs" role="tablist" aria-label="Количество комнат">
+          <button class="ptab" role="tab" aria-selected="true" data-p="0" id="p0">1 комната</button>
+          <button class="ptab" role="tab" aria-selected="false" data-p="1" id="p1">2 комнаты</button>
+          <button class="ptab" role="tab" aria-selected="false" data-p="2" id="p2">3 комнаты</button>
+        </div>
+        <div class="planbox"><svg id="planSvg" viewBox="0 0 120 80" role="img" aria-label="План квартиры"></svg></div>
+      </div>
+      <div class="pinfo" aria-live="polite">
+        <h3 id="pTitle"></h3><p class="sub" id="pSub"></p>
+        <ul class="rooms" id="pRooms"></ul>
+        <div class="price"><b id="pPrice"></b><span id="pM2"></span></div>
+        <a class="btn" href="#mort" id="toMort"><span>Посчитать ипотеку на эту квартиру</span></a>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="mort" style="padding-top:0"><div class="wrap">
+    <h2 class="h2" data-rv>Ипотека</h2>
+    <p class="lead" data-rv>Аннуитетный платёж, ставку и срок можно менять. Расчёт ориентировочный.</p>
+    <div class="mort">
+      <div class="in">
+        <div class="fld"><div class="top"><label for="mP">Стоимость квартиры</label><output id="oP"></output></div><input id="mP" type="range" min="15000000" max="120000000" step="100000"></div>
+        <div class="fld"><div class="top"><label for="mD">Первоначальный взнос</label><output id="oD"></output></div><input id="mD" type="range" min="10" max="70" step="1" value="20"></div>
+        <div class="fld"><div class="top"><label for="mY">Срок</label><output id="oY"></output></div><input id="mY" type="range" min="5" max="25" step="1" value="20"></div>
+        <div class="fld"><div class="top"><label for="mR">Ставка годовых</label><output id="oR"></output></div><input id="mR" type="range" min="5" max="22" step=".5" value="16"></div>
+      </div>
+      <div class="out" aria-live="polite">
+        <div><div class="k">Ежемесячный платёж</div><div class="big" id="oM"></div></div>
+        <div class="split"><i id="sB" style="background:var(--paper)"></i><i id="sI" style="background:var(--brass)"></i></div>
+        <div class="legend">
+          <div><em style="background:var(--paper)"></em>Тело кредита<b id="oB"></b></div>
+          <div><em style="background:var(--brass)"></em>Переплата<b id="oI"></b></div>
+        </div>
+        <p class="note">Демо-расчёт для концепта. Реальные условия зависят от банка и госпрограмм.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="loc" style="padding-top:0"><div class="wrap">
+    <h2 class="h2" data-rv>Всё рядом, пешком</h2>
+    <div class="loc">
+      <svg id="map" viewBox="0 0 600 420" role="img" aria-label="Схема района: комплекс у реки Есиль, рядом парк, школа и торговый центр"></svg>
+      <ul class="walk" id="walk"></ul>
+    </div>
+  </div></section>
+
+  <section id="visit" style="padding-top:0"><div class="wrap visit">
+    <div>
+      <h2 class="h2" data-rv>Приезжайте в шоурум</h2>
+      <p class="lead" data-rv>Покажем отделку вживую, проведём по стройке в каске и посчитаем квартиру под ваш бюджет. Работаем каждый день с 10:00 до 20:00.</p>
+    </div>
+    <form id="vf" novalidate>
+      <input id="vn" placeholder="Ваше имя" aria-label="Имя">
+      <input id="vp" placeholder="Телефон" inputmode="tel" aria-label="Телефон">
+      <select id="vk" aria-label="Интересует"><option>Интересует 1-комнатная</option><option selected>Интересует 2-комнатная</option><option>Интересует 3-комнатная</option></select>
+      <button class="btn" type="submit" style="justify-self:start;margin-top:10px"><span>Записаться на просмотр</span></button>
+      <div class="ok" id="vok" aria-live="polite"></div>
+    </form>
+  </div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 ЖК Есиль Парк, Астана</span><span>Концепт-сайт для портфолио. Проект вымышлен. Фото: Unsplash.</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE = matchMedia('(pointer: fine)').matches;
+const tg = n => Math.round(n).toLocaleString('ru-RU') + ' ₸';
+
+let lenis = null;
+if (!RM && window.Lenis) {
+  lenis = new Lenis({ lerp: 0.075 });
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger); lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+  } else { const r = t => { lenis.raf(t); requestAnimationFrame(r); }; requestAnimationFrame(r); }
+}
+const go = sel => { const el = document.querySelector(sel); if (!el) return; lenis ? lenis.scrollTo(el, { offset: -90, duration: 1.5 }) : el.scrollIntoView({ behavior: 'smooth' }); };
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); go(a.getAttribute('href')); }));
+const nav = document.getElementById('nav'); const ns = () => nav.classList.toggle('solid', scrollY > 30); addEventListener('scroll', ns, { passive: true }); ns();
+if (!RM && FINE) document.querySelectorAll('[data-magnet]').forEach(el => {
+  el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .18}px,${(e.clientY - r.top - r.height / 2) * .35}px)`; });
+  el.addEventListener('pointerleave', () => el.style.transform = '');
+});
+
+
+/* arch reveal: the arch grows to full screen while the headline splits */
+(() => {
+  const arch = document.getElementById('arch');
+  if (RM || !window.gsap || !window.ScrollTrigger) { arch.style.width = '100%'; arch.style.height = '100%'; arch.style.top = '50%'; arch.style.borderRadius = '0'; return; }
+  gsap.from('.rt span', { yPercent: 60, opacity: .2, duration: 1.4, ease: 'expo.out', stagger: .12 });
+  gsap.from('#arch', { yPercent: -30, scale: .8, duration: 1.6, ease: 'expo.out' });
+  const tl = gsap.timeline({ scrollTrigger: { trigger: '#reveal', start: 'top top', end: 'bottom bottom', scrub: 1 } });
+  tl.to('#arch', { width: '100vw', height: '100svh', top: '50%', borderRadius: '0px 0px 0px 0px', ease: 'power2.inOut' }, 0)
+    .to('#archImg', { objectPosition: '50% 50%', scale: 1.05, ease: 'none' }, 0)
+    .to('.rt .w1', { xPercent: -60, opacity: 0, ease: 'power1.in' }, 0)
+    .to('.rt .w2', { xPercent: 60, opacity: 0, ease: 'power1.in' }, 0)
+    .to('#rbg', { scale: 1.25, ease: 'none' }, 0)
+    .to('#rhint', { opacity: 0, duration: .1 }, 0);
+})();
+
+/* drag panorama with inertia */
+(() => {
+  const fr = document.getElementById('pframe'), tr = document.getElementById('ptrack'), tip = document.getElementById('ptip');
+  let x = 0, tx = 0, v = 0, down = false, sx = 0, sxv = 0, lastX = 0;
+  const min = () => Math.min(0, fr.clientWidth - tr.offsetWidth);
+  const clamp = n => Math.max(min(), Math.min(0, n));
+  tx = x = clamp(-(tr.offsetWidth - fr.clientWidth) / 2);
+  fr.addEventListener('pointerdown', e => { if (e.target.closest('.hot')) return; down = true; sx = e.clientX; sxv = tx; lastX = e.clientX; v = 0; fr.setPointerCapture(e.pointerId); tip.style.opacity = 0; });
+  fr.addEventListener('pointermove', e => { if (!down) return; tx = clamp(sxv + (e.clientX - sx)); v = e.clientX - lastX; lastX = e.clientX; });
+  const up = () => { if (!down) return; down = false; tx = clamp(tx + v * 12); };
+  fr.addEventListener('pointerup', up); fr.addEventListener('pointercancel', up);
+  fr.querySelectorAll('.hot').forEach(h => h.addEventListener('click', () => { fr.querySelectorAll('.hot').forEach(o => o.classList.toggle('on', o === h && !h.classList.contains('on'))); }));
+  addEventListener('resize', () => { tx = clamp(tx); });
+  (function f() { x += (tx - x) * (RM ? 1 : .1); tr.style.transform = `translate3d(${x}px,0,0)`; requestAnimationFrame(f); })();
+  if (!RM && window.gsap && window.ScrollTrigger) ScrollTrigger.create({ trigger: fr, start: 'top 80%', once: true, onEnter: () => { const s0 = tx; tx = clamp(s0 - 120); setTimeout(() => tx = clamp(s0), 700); } });
+})();
+
+/* plans */
+const PLANS = [
+  { t: '1 комната', s: 'Евро-формат, окна на парк', m2: 560000, rooms: [['Кухня-гостиная', 19.6, 4, 4, 60, 40, ''], ['Спальня', 13.2, 64, 4, 52, 40, ''], ['Прихожая', 6.4, 4, 44, 40, 24, ''], ['Санузел', 4.6, 44, 44, 26, 24, 'wet'], ['Гардероб', 2.8, 70, 44, 46, 24, ''], ['Балкон', 3.2, 4, 68, 112, 8, 'out']] },
+  { t: '2 комнаты', s: 'Две спальни и кухня-гостиная', m2: 540000, rooms: [['Кухня-гостиная', 22.4, 4, 4, 46, 42, ''], ['Спальня', 14.1, 50, 4, 32, 42, ''], ['Детская', 11.8, 82, 4, 34, 42, ''], ['Прихожая', 8.2, 4, 46, 40, 22, ''], ['Санузел', 4.9, 44, 46, 22, 22, 'wet'], ['Ванная', 3.6, 66, 46, 20, 22, 'wet'], ['Кладовая', 2.4, 86, 46, 30, 22, ''], ['Балкон', 4.1, 4, 68, 112, 8, 'out']] },
+  { t: '3 комнаты', s: 'Мастер-спальня со своей ванной', m2: 520000, rooms: [['Кухня-гостиная', 28.5, 4, 4, 44, 38, ''], ['Мастер-спальня', 17.2, 48, 4, 36, 38, ''], ['Спальня', 12.4, 84, 4, 32, 24, ''], ['Детская', 11.6, 84, 28, 32, 22, ''], ['Ванная мастер', 5.1, 48, 42, 20, 24, 'wet'], ['Прихожая', 10.3, 4, 42, 44, 24, ''], ['Санузел', 4.2, 68, 42, 16, 24, 'wet'], ['Постирочная', 3.1, 84, 50, 32, 16, 'wet'], ['Лоджия', 5.6, 4, 68, 112, 8, 'out']] }
+];
+let curPlan = 0;
+const svg = document.getElementById('planSvg');
+function showPlan(i, anim) {
+  curPlan = i;
+  const p = PLANS[i], total = p.rooms.reduce((a, r) => a + r[1], 0);
+  document.querySelectorAll('.ptab').forEach((b, k) => b.setAttribute('aria-selected', k === i));
+  svg.innerHTML = p.rooms.map(([n, a, x, y, w, h, c], k) => `<g data-k="${k}"><rect class="room ${c}" x="${x}" y="${y}" width="${w}" height="${h}"/><text x="${x + w / 2}" y="${y + h / 2 - (h > 12 ? 1.5 : -1)}" text-anchor="middle" font-size="${h > 12 ? 3.2 : 2.6}">${h > 12 ? n : n + ', ' + a.toFixed(1).replace('.', ',') + ' м²'}</text>${h > 12 ? `<text x="${x + w / 2}" y="${y + h / 2 + 3.6}" text-anchor="middle" font-size="2.8" opacity=".6">${a.toFixed(1).replace('.', ',')} м²</text>` : ''}</g>`).join('')
+    + `<rect x="1" y="1" width="118" height="78" fill="none" stroke="#10303A" stroke-width="1.6"/>`;
+  document.getElementById('pTitle').textContent = `${p.t}, ${total.toFixed(1).replace('.', ',')} м²`;
+  document.getElementById('pSub').textContent = p.s;
+  document.getElementById('pRooms').innerHTML = p.rooms.map(([n, a], k) => `<li data-k="${k}"><span>${n}</span><span>${a.toFixed(1).replace('.', ',')} м²</span></li>`).join('');
+  const price = Math.round(total * p.m2 / 100000) * 100000;
+  document.getElementById('pPrice').textContent = tg(price);
+  document.getElementById('pM2').textContent = tg(p.m2) + ' за м²';
+  const hl = (k, on) => { svg.querySelector(`g[data-k="${k}"] rect`)?.classList.toggle('hot', on); document.querySelector(`#pRooms li[data-k="${k}"]`)?.classList.toggle('hot', on); };
+  document.querySelectorAll('#planSvg g, #pRooms li').forEach(el => { const k = el.dataset.k; el.addEventListener('pointerenter', () => hl(k, true)); el.addEventListener('pointerleave', () => hl(k, false)); });
+  if (anim && !RM && window.gsap) gsap.from('#planSvg g', { opacity: 0, scale: .9, transformOrigin: '50% 50%', duration: .5, stagger: .04, ease: 'back.out(2)' });
+  return price;
+}
+document.querySelectorAll('.ptab').forEach(b => b.addEventListener('click', () => showPlan(+b.dataset.p, true)));
+showPlan(0, false);
+
+/* mortgage */
+const mP = document.getElementById('mP'), mD = document.getElementById('mD'), mY = document.getElementById('mY'), mR = document.getElementById('mR');
+const yrs = n => n + ' ' + (n % 10 === 1 && n % 100 !== 11 ? 'год' : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? 'года' : 'лет');
+let shown = 0;
+function calc() {
+  const P = +mP.value, d = +mD.value, Y = +mY.value, R = +mR.value;
+  const L = P * (1 - d / 100), r = R / 1200, n = Y * 12;
+  const M = r ? L * r / (1 - Math.pow(1 + r, -n)) : L / n;
+  const I = M * n - L;
+  document.getElementById('oP').textContent = tg(P);
+  document.getElementById('oD').textContent = d + '%, ' + tg(P * d / 100);
+  document.getElementById('oY').textContent = yrs(Y);
+  document.getElementById('oR').textContent = String(R).replace('.', ',') + '%';
+  document.getElementById('oB').textContent = tg(L);
+  document.getElementById('oI').textContent = tg(I);
+  document.getElementById('sB').style.width = (L / (L + I) * 100) + '%';
+  document.getElementById('sI').style.width = (I / (L + I) * 100) + '%';
+  const out = document.getElementById('oM');
+  if (!RM && window.gsap) { const o = { v: shown }; gsap.to(o, { v: M, duration: .45, ease: 'power2.out', onUpdate: () => out.textContent = tg(Math.round(o.v / 100) * 100) }); }
+  else out.textContent = tg(Math.round(M / 100) * 100);
+  shown = M;
+}
+[mP, mD, mY, mR].forEach(i => i.addEventListener('input', calc));
+mP.value = showPlan(0, false); calc();
+document.getElementById('toMort').addEventListener('click', () => {
+  const p = PLANS[curPlan]; mP.value = Math.round(p.rooms.reduce((a, r) => a + r[1], 0) * p.m2 / 100000) * 100000; calc();
+});
+
+/* map */
+(() => {
+  const s = document.getElementById('map'), NS = 'http://www.w3.org/2000/svg';
+  const add = (t, a, txt) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (txt) e.textContent = txt; s.appendChild(e); return e; };
+  for (let i = 0; i <= 600; i += 40) add('line', { x1: i, y1: 0, x2: i, y2: 420, stroke: '#E3E6E2', 'stroke-width': 1 });
+  for (let i = 0; i <= 420; i += 40) add('line', { x1: 0, y1: i, x2: 600, y2: i, stroke: '#E3E6E2', 'stroke-width': 1 });
+  add('path', { d: 'M-10 330 C 120 300, 180 380, 300 350 S 480 280, 610 310', fill: 'none', stroke: '#9DBCC4', 'stroke-width': 34, 'stroke-linecap': 'round' });
+  add('text', { x: 430, y: 330, 'font-size': 15, fill: '#4E7A86', 'font-family': 'Cormorant Garamond, serif', 'font-style': 'italic' }, 'река Есиль');
+  add('path', { d: 'M90 120 h150 v110 h-150 Z', fill: '#C9D7C4', rx: 8 });
+  add('text', { x: 165, y: 180, 'text-anchor': 'middle', 'font-size': 13, fill: '#3E5A3E', 'font-family': 'Jost, sans-serif' }, 'Парк, 1,2 га');
+  const P = [[300, 210, 'ЖК', true], [420, 120, 'Школа'], [500, 200, 'ТРЦ'], [200, 60, 'Детсад'], [330, 300, 'Набережная']];
+  P.forEach(([x, y, t, me]) => {
+    if (!me) { const l = add('line', { x1: 300, y1: 210, x2: x, y2: y, stroke: '#A9824A', 'stroke-width': 1.5, 'stroke-dasharray': '4 5' }); l.classList.add('route'); }
+  });
+  P.forEach(([x, y, t, me]) => {
+    if (me) { const p = add('circle', { cx: x, cy: y, r: 26, fill: 'none', stroke: '#A9824A', 'stroke-width': 1.5 }); p.classList.add('pulse'); add('circle', { cx: x, cy: y, r: 16, fill: '#10303A' }); add('text', { x, y: y + 4.5, 'text-anchor': 'middle', 'font-size': 12, fill: '#F4F4F1', 'font-family': 'Jost, sans-serif', 'font-weight': 600 }, t); }
+    else { add('circle', { cx: x, cy: y, r: 6, fill: '#A9824A' }); add('text', { x: x + 10, y: y - 10, 'font-size': 13, fill: '#10303A', 'font-family': 'Jost, sans-serif' }, t); }
+  });
+  if (!RM && window.gsap) {
+    gsap.to('.pulse', { attr: { r: 44 }, opacity: 0, duration: 1.8, repeat: -1, ease: 'power2.out' });
+    gsap.fromTo('.route', { strokeDashoffset: 60 }, { strokeDashoffset: 0, duration: 1.4, repeat: -1, ease: 'none' });
+  }
+  document.getElementById('walk').innerHTML = [['Набережная Есиля', 'прогулочная зона 8 км', 4], ['Школа-лицей', 'государственная, 1–11 классы', 6], ['Детский сад', 'на 240 мест', 3], ['Торговый центр', 'супермаркет, кино, аптека', 9]].map(([n, d, m]) => `<li><span>${n}<small>${d}</small></span><b>${m} мин</b></li>`).join('');
+})();
+
+/* visit form */
+document.getElementById('vf').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.currentTarget, ok = document.getElementById('vok'), p = document.getElementById('vp').value.replace(/\D/g, '');
+  if (p.length < 10) { ok.style.color = '#B4442E'; ok.textContent = 'Укажите телефон, чтобы менеджер мог подтвердить время.'; f.classList.remove('shake'); void f.offsetWidth; f.classList.add('shake'); return; }
+  ok.style.color = ''; ok.textContent = 'Спасибо, заявка принята. Это демо-форма концепта, звонка не будет.';
+});
+
+/* entrance + reveals */
+if (!RM && window.gsap) {
+  if (window.ScrollTrigger) {
+    gsap.utils.toArray('[data-rv]').forEach(el => gsap.from(el, { y: 50, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%' } }));
+    gsap.from('.facts div', { y: 30, duration: 1, ease: 'expo.out', stagger: .08, scrollTrigger: { trigger: '.facts', start: 'top 90%' } });
+  }
+}
+</script>
+
+</body></html>

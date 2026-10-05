@@ -1,0 +1,364 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Бритва Барбершоп</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Onest:wght@400;500;700&display=swap">
+<style>
+/* Layout: sticky bar + page router; oxblood leather, bone type, brass details; barber pole as the one bold motif */
+:root{
+  --bg:#240b0e; --surface:#34131a; --line:rgba(238,227,209,.14);
+  --fg:#eee3d1; --mute:#bfa99e; --brass:#d2a85c; --pole:#b3202c;
+  --display:"Dela Gothic One","Arial Black",system-ui,sans-serif;
+  --body:"Onest",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);margin:0}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.02;margin:0;text-wrap:balance}
+h2{font-size:clamp(34px,6vw,64px);margin-bottom:28px}
+p{margin:0}
+.mute{color:var(--mute)}
+button,input,select{font:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(36,11,14,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:24px;height:68px}
+.logo{font-family:var(--display);font-size:22px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.mini-pole{width:10px;height:26px;border-radius:5px;background:repeating-linear-gradient(135deg,var(--pole) 0 5px,var(--fg) 5px 10px,#1d4e8f 10px 15px,var(--fg) 15px 20px);background-size:100% 28px;animation:pole 1.4s linear infinite}
+nav.links{display:flex;gap:4px;margin-left:auto}
+nav.links a{text-decoration:none;padding:8px 12px;border-radius:999px;color:var(--mute);font-weight:500;font-size:15px;transition:.2s}
+nav.links a:hover{color:var(--fg)}
+nav.links a.on{color:var(--bg);background:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--brass);color:#241006;border:0;border-radius:999px;padding:13px 22px;font-weight:700;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px);background:#e2bb72}
+.btn.ghost{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--line)}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--fg);border-radius:10px;width:44px;height:40px;cursor:pointer;font-size:20px}
+@media(max-width:900px){
+  .bar .btn{display:none}
+  .burger{display:block}
+  nav.links{position:fixed;inset:68px 0 auto 0;flex-direction:column;background:var(--bg);padding:16px 20px 24px;border-bottom:1px solid var(--line);transform:translateY(-120%);transition:transform .3s;margin:0}
+  nav.links.open{transform:none}
+  nav.links a{font-size:20px;padding:12px 14px}
+}
+
+/* pages */
+.page{padding-block:56px 80px;animation:in .5s ease both}
+@keyframes in{from{opacity:.001;transform:translateY(14px)}}
+@keyframes pole{to{background-position:0 28px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;padding-block:40px 56px}
+.hero h1{font-size:clamp(64px,15vw,190px);letter-spacing:-.02em}
+.hero h1 span{display:block;color:var(--brass);font-size:.32em;letter-spacing:.02em;margin-top:10px}
+.hero .lead{font-size:clamp(17px,2vw,20px);max-width:520px;margin-top:26px;color:var(--mute)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.pole{width:84px;height:min(62vh,440px);border-radius:42px;position:relative;
+  background:repeating-linear-gradient(135deg,var(--pole) 0 22px,var(--fg) 22px 44px,#1d4e8f 44px 66px,var(--fg) 66px 88px);
+  background-size:100% 124.5px;animation:pole 2.2s linear infinite;box-shadow:inset -14px 0 24px rgba(0,0,0,.45),inset 10px 0 18px rgba(255,255,255,.25),0 0 0 8px var(--surface),0 0 0 9px var(--brass)}
+.pole::before,.pole::after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:104px;height:26px;background:var(--brass);border-radius:8px}
+.pole::before{top:-30px}.pole::after{bottom:-30px}
+@media(max-width:700px){.hero{grid-template-columns:1fr}.pole{display:none}}
+
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}
+.facts div{padding:22px 18px;border-right:1px solid var(--line)}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font-family:var(--display);font-size:30px;color:var(--brass);font-weight:400}
+@media(max-width:700px){.facts{grid-template-columns:1fr 1fr}.facts div:nth-child(2){border-right:0}.facts div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+section.block{margin-top:80px}
+.row-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+.row-head h2{margin:0}
+
+/* price list */
+.price-cat{margin-bottom:44px}
+.price-cat h3{font-size:24px;color:var(--brass);margin-bottom:10px}
+.item{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.item .n{font-weight:700;font-size:17px}
+.item .d{grid-column:1;color:var(--mute);font-size:14px}
+.item .p{grid-row:1/3;grid-column:2;align-self:center;font-family:var(--display);font-size:22px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.tabs button{background:none;border:1px solid var(--line);color:var(--mute);padding:9px 16px;border-radius:999px;cursor:pointer}
+.tabs button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.note{background:var(--surface);border-radius:16px;padding:20px 22px;color:var(--mute);font-size:15px}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+.m{background:var(--surface);border-radius:20px;overflow:hidden}
+.m .ph{aspect-ratio:4/5;max-width:100%;display:grid;place-items:center;font-family:var(--display);font-size:88px;color:rgba(238,227,209,.9);position:relative}
+.m .ph::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 3px,rgba(0,0,0,.08) 3px 4px)}
+.m .in{padding:18px 20px 22px}
+.m h3{font-size:24px}
+.lvl{display:inline-block;margin-top:8px;font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--brass);color:var(--brass)}
+.m p{margin-top:10px;color:var(--mute);font-size:15px}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.g{border-radius:18px;aspect-ratio:1;max-width:100%;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px}
+.g.tall{grid-row:span 2;aspect-ratio:auto}
+.g span{position:relative;font-family:var(--display);font-size:22px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.g small{position:absolute;top:16px;left:18px;font-size:13px;color:rgba(255,255,255,.8)}
+@media(max-width:700px){.gal{grid-template-columns:1fr 1fr}}
+
+/* reviews */
+.revs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.rv{border-top:2px solid var(--brass);padding-top:18px}
+.rv .stars{color:var(--brass);letter-spacing:3px}
+.rv p{margin:10px 0 14px;font-size:17px}
+.rv .who{color:var(--mute);font-size:14px}
+.score{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin-bottom:40px}
+.score b{font-family:var(--display);font-size:80px;font-weight:400;line-height:1}
+
+/* contacts + booking */
+.two{display:grid;grid-template-columns:1fr 1.1fr;gap:40px}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+.info dl{display:grid;grid-template-columns:auto 1fr;gap:14px 22px;margin:0}
+.info dt{color:var(--mute)}
+.info dd{margin:0;font-weight:500}
+.map{margin-top:26px;border-radius:20px;height:240px;position:relative;overflow:hidden;background:
+  linear-gradient(90deg,transparent 48%,rgba(238,227,209,.12) 48% 52%,transparent 52%),
+  linear-gradient(0deg,transparent 60%,rgba(238,227,209,.12) 60% 63%,transparent 63%),
+  linear-gradient(25deg,transparent 30%,rgba(238,227,209,.08) 30% 32%,transparent 32%),var(--surface)}
+.map .pin{position:absolute;left:50%;top:60%;transform:translate(-50%,-100%);background:var(--brass);color:#241006;font-weight:700;padding:8px 14px;border-radius:12px;font-size:14px;white-space:nowrap}
+.map a{position:absolute;right:14px;bottom:14px;font-size:14px}
+form.book{background:var(--surface);border-radius:24px;padding:26px;display:grid;gap:16px}
+form.book h3{font-size:28px}
+label{display:grid;gap:6px;font-size:14px;color:var(--mute)}
+input,select{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slots button{background:var(--bg);border:1px solid var(--line);color:var(--fg);border-radius:10px;padding:8px 12px;cursor:pointer;font-variant-numeric:tabular-nums}
+.slots button.on{background:var(--brass);color:#241006;border-color:var(--brass)}
+.slots button:disabled{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+.sum{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:14px}
+.sum b{font-family:var(--display);font-size:24px;font-weight:400}
+.ok{background:var(--surface);border-radius:24px;padding:36px 26px;text-align:center}
+.ok h3{font-size:30px;margin-bottom:10px;color:var(--brass)}
+
+footer{border-top:1px solid var(--line);padding-block:30px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#home" data-go="home"><i class="mini-pole"></i>БРИТВА</a>
+    <nav class="links" id="nav">
+      <a href="#home" data-go="home">Главная</a>
+      <a href="#prices" data-go="prices">Прайс</a>
+      <a href="#team" data-go="team">Мастера</a>
+      <a href="#works" data-go="works">Работы</a>
+      <a href="#reviews" data-go="reviews">Отзывы</a>
+      <a href="#contacts" data-go="contacts">Контакты</a>
+    </nav>
+    <a class="btn" href="#contacts" data-go="contacts">Записаться</a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- HOME -->
+<div class="page" data-page="home">
+  <div class="hero">
+    <div>
+      <h1>БРИТВА<span>барбершоп · Левый берег</span></h1>
+      <p class="lead">Мужские стрижки, фейды и бритьё опасной бритвой с горячим полотенцем. Кофе или чай пока ждёте. Каждый день с 10:00 до 22:00.</p>
+      <div class="cta">
+        <a class="btn" href="#contacts" data-go="contacts">Записаться онлайн</a>
+        <a class="btn ghost" href="#prices" data-go="prices">Смотреть прайс</a>
+      </div>
+    </div>
+    <div class="pole" aria-hidden="true"></div>
+  </div>
+
+  <div class="facts">
+    <div><b>6 лет</b><span class="mute">работаем в Астане</span></div>
+    <div><b>4</b><span class="mute">мастера в смене</span></div>
+    <div><b>4.9</b><span class="mute">рейтинг в 2ГИС</span></div>
+    <div><b>45 мин</b><span class="mute">средняя стрижка</span></div>
+  </div>
+
+  <section class="block">
+    <div class="row-head"><h2>Популярное</h2><a href="#prices" data-go="prices" class="mute">Весь прайс</a></div>
+    <div id="popular"></div>
+  </section>
+
+  <section class="block">
+    <div class="row-head"><h2>Мастера</h2><a href="#team" data-go="team" class="mute">Вся команда</a></div>
+    <div class="team" id="teamPreview"></div>
+  </section>
+
+  <section class="block">
+    <div class="note" style="display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <div><h3 style="font-size:28px;color:var(--fg)">Первый визит −15%</h3><p style="margin-top:6px">Скидка на любую услугу при записи через сайт.</p></div>
+      <a class="btn" href="#contacts" data-go="contacts">Выбрать время</a>
+    </div>
+  </section>
+</div>
+
+<!-- PRICES -->
+<div class="page" data-page="prices" hidden>
+  <h2>Прайс-лист</h2>
+  <div class="tabs" id="tabs"></div>
+  <div id="priceList"></div>
+  <p class="note">Цены указаны для мастера уровня «Барбер». У старшего мастера +1 000 ₸, у топ-мастера +2 000 ₸. Оплата наличными, Kaspi QR или картой.</p>
+</div>
+
+<!-- TEAM -->
+<div class="page" data-page="team" hidden>
+  <h2>Наши мастера</h2>
+  <div class="team" id="teamFull"></div>
+</div>
+
+<!-- WORKS -->
+<div class="page" data-page="works" hidden>
+  <h2>Работы</h2>
+  <div class="gal" id="gal"></div>
+  <p class="mute" style="margin-top:22px">Больше работ в Instagram @britva.astana</p>
+</div>
+
+<!-- REVIEWS -->
+<div class="page" data-page="reviews" hidden>
+  <h2>Отзывы</h2>
+  <div class="score"><b>4.9</b><div><div style="color:var(--brass);font-size:22px;letter-spacing:4px">★★★★★</div><div class="mute">312 отзывов в 2ГИС и Google</div></div></div>
+  <div class="revs" id="revs"></div>
+</div>
+
+<!-- CONTACTS -->
+<div class="page" data-page="contacts" hidden>
+  <h2>Контакты и запись</h2>
+  <div class="two">
+    <div class="info">
+      <dl>
+        <dt>Адрес</dt><dd>Астана, пр. Кабанбай батыра 11, ЖК «Nova», 1 этаж</dd>
+        <dt>Часы</dt><dd>Ежедневно 10:00–22:00</dd>
+        <dt>Телефон</dt><dd>+7 700 000 00 00</dd>
+        <dt>WhatsApp</dt><dd>+7 700 000 00 00</dd>
+        <dt>Парковка</dt><dd>Бесплатная, у входа</dd>
+      </dl>
+      <div class="map"><span class="pin">БРИТВА · Кабанбай батыра 11</span><a href="https://2gis.kz/astana" target="_blank" rel="noopener">Открыть в 2ГИС</a></div>
+    </div>
+
+    <div>
+      <form class="book" id="book">
+        <h3>Онлайн-запись</h3>
+        <label>Услуга<select id="svc"></select></label>
+        <label>Мастер<select id="master"></select></label>
+        <label>Дата<input type="date" id="date" required></label>
+        <div><div style="font-size:14px;color:var(--mute);margin-bottom:8px">Время</div><div class="slots" id="slots"></div></div>
+        <label>Имя<input id="name" required placeholder="Как к вам обращаться"></label>
+        <label>Телефон<input id="phone" type="tel" required placeholder="+7 7__ ___ __ __"></label>
+        <div class="sum"><span class="mute">Итого</span><b id="total">—</b></div>
+        <button class="btn" type="submit">Записаться</button>
+        <p id="err" class="mute" style="font-size:14px" hidden></p>
+      </form>
+      <div class="ok" id="done" hidden>
+        <h3>Вы записаны</h3>
+        <p id="doneText"></p>
+        <p class="mute" style="margin-top:10px">Мы пришлём напоминание в WhatsApp за 2 часа.</p>
+        <button class="btn ghost" style="margin-top:20px" id="again">Новая запись</button>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Барбершоп «Бритва», Астана</span><span>Демо-сайт</span></div></footer>
+
+<script>
+const P = {
+  "Стрижки":[
+    ["Мужская стрижка","Консультация, мытьё, укладка",6000,45],
+    ["Фейд / скин-фейд","Плавный переход от нуля",7000,50],
+    ["Стрижка машинкой","Одна насадка по всей голове",3500,20],
+    ["Удлинённая стрижка","Для волос от 10 см, ножницы",7500,60],
+    ["Детская стрижка","До 12 лет",4000,30]],
+  "Борода и бритьё":[
+    ["Моделирование бороды","Форма, контур, масло",4000,30],
+    ["Королевское бритьё","Опасная бритва, горячее полотенце",5500,40],
+    ["Бритьё головы","Опасная бритва",5000,35],
+    ["Окантовка","Контур без стрижки",2000,15]],
+  "Комплексы":[
+    ["Стрижка + борода","Самое популярное",9000,75],
+    ["Отец + сын","Две стрижки",9000,75],
+    ["Полный уход","Стрижка, борода, маска, массаж головы",12000,100]],
+  "Дополнительно":[
+    ["Камуфляж седины","Тонирование волос или бороды",4000,20],
+    ["Чёрная маска","Очищение кожи лица",2500,15],
+    ["Воск: нос / уши","",1500,10],
+    ["Укладка","Средство на выбор",1500,10]]
+};
+const TEAM=[
+  ["Арман","Топ-мастер","Сложные фейды и удлинённые стрижки. 9 лет в профессии.","#8a2a2f,#2a0d10","А"],
+  ["Данияр","Старший мастер","Классика и бритьё опасной бритвой. Работает с бородами любой длины.","#6d5a2a,#241006","Д"],
+  ["Руслан","Барбер","Кроп, текстурные стрижки, детские стрижки.","#1d4e8f,#10213a","Р"],
+  ["Тимур","Барбер","Скин-фейды и дизайн машинкой.","#44503a,#161c12","Т"]];
+const WORKS=[["Скин-фейд","Арман","#6b1e24,#1a0507",1],["Кроп","Руслан","#1d4e8f,#0d1b30"],["Борода","Данияр","#7a6331,#231a07"],["Помпадур","Арман","#3e4a36,#12160e"],["Бритьё","Данияр","#8f5a3a,#2a1409",1],["Тейпер","Тимур","#4a2f5a,#150a1c"],["Бадзкат","Тимур","#2d5a55,#0a1b19"]];
+const REV=[
+  ["Ерлан","Хожу к Арману третий год. Фейд держится три недели, никто в городе так не делает.",5],
+  ["Максим","Королевское бритьё — отдельный кайф. Полотенце, бритва, 40 минут тишины.",5],
+  ["Нуржан","Привёл сына, сделали быстро и без слёз. Записался онлайн за минуту.",5],
+  ["Алексей","Удобно, что можно выбрать мастера и время на сайте. Кофе хороший.",5],
+  ["Санжар","Данияр сделал бороде нормальную форму впервые за год.",5],
+  ["Ильяс","Чисто, спокойно, без очередей. Цена соответствует.",4]];
+
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString('ru-RU').replace(/,/g,' ')+' ₸';
+const item=([n,d,p,t])=>`<div class="item"><span class="n">${n}</span><span class="d">${d?d+' · ':''}${t} мин</span><span class="p">${fmt(p)}</span></div>`;
+
+// prices
+const cats=Object.keys(P);
+$('#tabs').innerHTML=['Все',...cats].map((c,i)=>`<button type="button" class="${i?'':'on'}" data-c="${c}">${c}</button>`).join('');
+function renderPrices(c){ $('#priceList').innerHTML=cats.filter(k=>c==='Все'||k===c).map(k=>`<div class="price-cat"><h3>${k}</h3>${P[k].map(item).join('')}</div>`).join(''); }
+renderPrices('Все');
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));renderPrices(b.dataset.c)});
+$('#popular').innerHTML=[P["Стрижки"][0],P["Стрижки"][1],P["Комплексы"][0],P["Борода и бритьё"][1]].map(item).join('');
+
+// team
+const card=([n,l,d,g,ch])=>`<div class="m"><div class="ph" style="background:linear-gradient(160deg,${g})">${ch}</div><div class="in"><h3>${n}</h3><span class="lvl">${l}</span><p>${d}</p></div></div>`;
+$('#teamFull').innerHTML=TEAM.map(card).join('');
+$('#teamPreview').innerHTML=TEAM.slice(0,3).map(card).join('');
+
+// gallery
+$('#gal').innerHTML=WORKS.map(([n,m,g,t])=>`<div class="g ${t?'tall':''}" style="background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.18),transparent 45%),linear-gradient(150deg,${g})"><small>мастер ${m}</small><span>${n}</span></div>`).join('');
+
+// reviews
+$('#revs').innerHTML=REV.map(([w,t,s])=>`<div class="rv"><div class="stars">${'★'.repeat(s)}${'☆'.repeat(5-s)}</div><p>${t}</p><div class="who">${w} · 2ГИС</div></div>`).join('');
+
+// booking
+const all=cats.flatMap(k=>P[k]);
+$('#svc').innerHTML=all.map((s,i)=>`<option value="${i}">${s[0]} — ${fmt(s[2])}</option>`).join('');
+const add=[0,1000,2000];
+$('#master').innerHTML=`<option value="-1">Любой свободный</option>`+TEAM.map((t,i)=>`<option value="${i}">${t[0]} (${t[1].toLowerCase()})</option>`).join('');
+const d=new Date(); $('#date').value=d.toISOString().slice(0,10); $('#date').min=$('#date').value;
+let slot=null;
+function slots(){ const seed=($('#date').value+$('#master').value).split('').reduce((a,c)=>a+c.charCodeAt(0),0);
+  let h=''; for(let t=10;t<22;t++){ for(const m of ['00','30']){ const busy=((t*7+ +m+seed)%5)===0; h+=`<button type="button" ${busy?'disabled':''} data-t="${t}:${m}">${t}:${m}</button>`; } }
+  $('#slots').innerHTML=h; slot=null; }
+function total(){ const s=all[$('#svc').value]; const mi=+$('#master').value; const lvl=mi<0?0:({"Топ-мастер":2,"Старший мастер":1}[TEAM[mi][1]]||0); $('#total').textContent=fmt(s[2]+add[lvl]); }
+$('#slots').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;document.querySelectorAll('#slots button').forEach(x=>x.classList.toggle('on',x===b));slot=b.dataset.t});
+['svc','master','date'].forEach(id=>$('#'+id).addEventListener('change',()=>{if(id!=='svc')slots();total()}));
+slots();total();
+$('#book').addEventListener('submit',e=>{e.preventDefault();
+  if(!slot){$('#err').hidden=false;$('#err').textContent='Выберите время, чтобы продолжить.';return}
+  const mi=+$('#master').value;
+  $('#doneText').textContent=`${$('#name').value}, ждём вас ${new Date($('#date').value).toLocaleDateString('ru-RU',{day:'numeric',month:'long'})} в ${slot}. ${all[$('#svc').value][0]}, мастер: ${mi<0?'любой свободный':TEAM[mi][0]}.`;
+  $('#book').hidden=true;$('#done').hidden=false;$('#err').hidden=true;});
+$('#again').addEventListener('click',()=>{$('#book').hidden=false;$('#done').hidden=true;$('#book').reset();$('#date').value=d.toISOString().slice(0,10);slots();total()});
+
+// router
+const pages=[...document.querySelectorAll('[data-page]')];
+function go(id){ if(!pages.some(p=>p.dataset.page===id)) id='home';
+  pages.forEach(p=>p.hidden=p.dataset.page!==id);
+  document.querySelectorAll('nav.links a').forEach(a=>a.classList.toggle('on',a.dataset.go===id));
+  window.scrollTo({top:0});
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+  $('#nav').classList.remove('open');$('#burger').setAttribute('aria-expanded','false'); }
+document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(a){e.preventDefault();go(a.dataset.go)}});
+$('#burger').addEventListener('click',()=>{const o=$('#nav').classList.toggle('open');$('#burger').setAttribute('aria-expanded',o)});
+go(location.hash.slice(1)||'home');
+</script>
+
+</body></html>

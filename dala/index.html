@@ -1,0 +1,291 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Дала Роастерс</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400..900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: full-bleed photo with the brand name bleeding off its bottom edge → expanding photo accordion for the process → menu as a typographic list with a photo that follows the cursor → bean of the week as a coffee-bag label → booking card over the room photo */
+:root{
+  --forest:#13302A; --forest2:#1A3B33; --line:#2D5449;
+  --oat:#EFE6D6; --oat2:#BFC7B9; --cherry:#E2553D; --leaf:#9CC4A6;
+  --display:"Unbounded",ui-sans-serif,system-ui,sans-serif;
+  --body:"Manrope",ui-sans-serif,system-ui,sans-serif;
+  --gut:clamp(16px,4vw,56px);
+  color-scheme:dark;
+}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+*{box-sizing:border-box}
+body{background:var(--forest);color:var(--oat);font:16px/1.6 var(--body);overflow-x:hidden}
+a{color:inherit}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--cherry);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:var(--gut)}
+
+/* hero */
+.hero{position:relative;height:min(92svh,860px);min-height:560px;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 50%;will-change:transform}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,48,42,.55) 0%,rgba(19,48,42,0) 30%,rgba(19,48,42,0) 55%,rgba(19,48,42,.95) 100%)}
+.top{position:absolute;z-index:3;left:0;right:0;top:0;padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;height:76px;gap:16px}
+.logo{font:800 15px/1 var(--display);text-decoration:none;letter-spacing:.02em}
+.links{display:flex;gap:6px}
+.links a{text-decoration:none;font-weight:600;font-size:14px;padding:10px 16px;border-radius:999px;background:rgba(19,48,42,.45);backdrop-filter:blur(10px);transition:background .25s,color .25s}
+.links a:hover{background:var(--oat);color:var(--forest)}
+@media (max-width:700px){.links a:not(:last-child){display:none}}
+.tag{position:absolute;z-index:3;right:var(--gut);top:calc(96px + env(safe-area-inset-top,0px));max-width:250px;background:var(--oat);color:var(--forest);border-radius:20px;padding:16px 18px;font-weight:600;font-size:14px;line-height:1.4;transform:rotate(3deg)}
+.tag b{display:block;font:700 12px var(--display);color:var(--cherry);margin-bottom:4px}
+@media (max-width:640px){.tag{display:none}}
+.brand{position:absolute;z-index:4;left:0;right:0;bottom:-.1em;margin:0;text-align:center;font:900 clamp(96px,27vw,420px)/.8 var(--display);letter-spacing:-.07em;color:var(--oat);white-space:nowrap;pointer-events:none}
+.brand span{display:inline-block}
+.under{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) auto;gap:clamp(20px,4vw,60px);align-items:end;padding-block:clamp(70px,9vw,120px) 30px}
+@media (max-width:860px){.under{grid-template-columns:1fr}}
+.under h1{margin:0;font:600 clamp(24px,2.6vw,36px)/1.15 var(--display);letter-spacing:-.03em;max-width:20ch}
+.under p{margin:0;color:var(--oat2);max-width:40ch}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 24px;border-radius:999px;background:var(--cherry);color:#fff;font:700 15px/1 var(--body);border:0;cursor:pointer;text-decoration:none;white-space:nowrap;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.btn:hover .ic{animation:shake .45s}
+@keyframes shake{20%{transform:rotate(-14deg)}40%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(5deg)}}
+
+section{padding-block:clamp(70px,10vw,130px)}
+.h2{font:700 clamp(30px,4.4vw,58px)/1.02 var(--display);letter-spacing:-.04em;margin:0;text-wrap:balance}
+.lead{color:var(--oat2);max-width:52ch;margin:14px 0 0}
+
+/* process accordion */
+.acc{display:flex;gap:10px;height:clamp(420px,58vh,600px);margin-top:44px}
+.col{position:relative;flex:1;min-width:0;border-radius:26px;overflow:hidden;cursor:pointer;transition:flex .8s cubic-bezier(.7,0,.2,1);border:0;padding:0;background:var(--forest2);color:var(--oat);text-align:left}
+.col.on{flex:4}
+.col img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1),filter .6s}
+.col:not(.on) img{filter:saturate(.5) brightness(.6);transform:scale(1.15)}
+.col::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(19,48,42,.92),rgba(19,48,42,0) 55%)}
+.col .num{position:absolute;z-index:2;left:20px;top:18px;font:800 14px var(--display);background:var(--oat);color:var(--forest);width:38px;height:38px;border-radius:50%;display:grid;place-items:center}
+.col .cap{position:absolute;z-index:2;left:22px;right:22px;bottom:22px}
+.col h3{margin:0;font:700 clamp(20px,2vw,28px)/1.1 var(--display);letter-spacing:-.03em;white-space:nowrap}
+.col p{margin:10px 0 0;color:var(--oat2);max-width:38ch;opacity:0;transform:translateY(12px);transition:opacity .4s,transform .5s}
+.col.on p{opacity:1;transform:none;transition-delay:.35s}
+.col:not(.on) h3{writing-mode:vertical-rl;transform:rotate(180deg);position:absolute;bottom:0;left:0}
+@media (max-width:760px){.acc{flex-direction:column;height:auto}.col{flex:none;height:110px}.col.on{flex:none;height:380px}.col:not(.on) h3{writing-mode:horizontal-tb;transform:none;position:static}}
+
+/* menu list with cursor preview */
+.mhead{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.tabs{display:flex;gap:4px;padding:5px;background:var(--forest2);border-radius:999px;border:1px solid var(--line);flex-wrap:wrap}
+.tab{border:0;background:none;color:var(--oat2);font:700 14px var(--body);padding:10px 16px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s}
+.tab[aria-selected="true"]{background:var(--cherry);color:#fff}
+.list{margin-top:36px;border-top:1px solid var(--line)}
+.it{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 24px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line);transition:padding .5s cubic-bezier(.2,.8,.2,1),color .3s}
+.it b{font:700 clamp(22px,3.2vw,44px)/1.05 var(--display);letter-spacing:-.04em}
+.it span{font:700 clamp(18px,2vw,26px) var(--display);color:var(--cherry);font-variant-numeric:tabular-nums;white-space:nowrap}
+.it small{grid-column:1/-1;color:var(--oat2);font-size:15px}
+.it:hover{padding-left:22px;color:#fff}
+.peek{position:fixed;left:0;top:0;width:240px;aspect-ratio:3/4;border-radius:20px;overflow:hidden;pointer-events:none;z-index:30;transform:translate(-50%,-50%) scale(0) rotate(-6deg)}
+.peek img{width:100%;height:100%;object-fit:cover}
+@media (pointer:coarse){.peek{display:none}}
+
+/* label */
+.label{max-width:900px;margin:0 auto;background:var(--oat);color:var(--forest);border-radius:12px;padding:clamp(22px,4vw,48px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(22px,4vw,48px);position:relative;box-shadow:0 0 0 8px var(--forest),0 0 0 9px var(--oat2)}
+@media (max-width:820px){.label{grid-template-columns:1fr}}
+.label .kick{font:800 12px var(--display);letter-spacing:.06em;color:var(--cherry)}
+.label h2{font:800 clamp(30px,4vw,52px)/.98 var(--display);letter-spacing:-.05em;margin:8px 0 14px}
+.label p{margin:0;color:#3E5A51}
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:20px;border-top:1.5px solid var(--forest)}
+.specs div{padding:12px 0;border-bottom:1px solid #C9C2B2;min-width:0}
+.specs dt{font-size:12px;font-weight:700;color:#5A776D}
+.specs dd{margin:2px 0 0;font:600 17px/1.2 var(--display);letter-spacing:-.02em}
+.chart svg{width:100%;height:auto;display:block}
+.chart text{fill:#3E5A51;font:12px var(--body)}
+.chart h3{margin:0 0 6px;font:700 15px var(--display)}
+.stamp{position:absolute;right:-26px;top:-30px;width:120px;height:120px}
+.stamp svg{width:100%;height:100%;animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:640px){.stamp{right:-6px;top:-40px;width:96px;height:96px}}
+
+/* visit */
+.visit{position:relative;min-height:min(92svh,820px);display:grid;align-items:end;overflow:hidden;padding:0}
+.visit>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.visit::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(19,48,42,.1),rgba(19,48,42,.7))}
+.visit .wrap{position:relative;z-index:2;width:100%;display:flex;justify-content:flex-end;padding-block:clamp(40px,7vw,90px)}
+.bk{background:var(--oat);color:var(--forest);border-radius:28px;padding:clamp(22px,3vw,34px);width:min(440px,100%);display:grid;gap:14px}
+.bk h2{font:800 clamp(28px,3vw,40px)/1 var(--display);letter-spacing:-.05em;margin:0}
+.bk .info{font-size:14px;color:#3E5A51;font-weight:600;display:grid;gap:4px}
+label{font-size:12px;font-weight:700;color:#3E5A51;display:grid;gap:6px}
+input,select{font:600 16px var(--body);padding:13px 15px;border-radius:14px;border:1.5px solid #B7BFAF;background:#F8F3EA;color:var(--forest);width:100%;color-scheme:light}
+input:focus,select:focus{outline:none;border-color:var(--cherry)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.done{background:var(--forest);color:var(--oat);border-radius:16px;padding:16px;font-weight:600}
+.done small{display:block;color:var(--oat2);font-weight:500;margin-top:4px}
+footer{padding-block:40px;color:var(--oat2);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="hero" id="top">
+  <img src="../img/latte.jpg" alt="Бариста рисует латте-арт" id="heroImg">
+  <div class="top"><div class="wrap">
+    <a class="logo" href="#top">ДАЛА РОАСТЕРС</a>
+    <nav class="links"><a href="#how">Обжарка</a><a href="#menu">Меню</a><a href="#bean">Зерно</a><a href="#visit">Бронь</a></nav>
+  </div></div>
+  <div class="tag"><b>ЗЕРНО НЕДЕЛИ</b>Эфиопия, Иргачефф. Бергамот, персик, жасмин</div>
+  <p class="brand" aria-hidden="true" id="brand"><span>Д</span><span>а</span><span>л</span><span>а</span></p>
+</header>
+
+<main>
+  <div class="wrap under">
+    <h1>Обжариваем в степи, варим при вас на Левом берегу</h1>
+    <p>Партии по 12 кг каждый вторник. Каждую неделю в ротации новая страна, а молоко можно заменить без доплаты.</p>
+    <a href="#visit" class="btn" data-magnet>Стол на двоих <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 9h13v5a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6V9Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 2c0 2 2 2 2 4M12 2c0 2 2 2 2 4"/></svg></a>
+  </div>
+
+  <section id="how"><div class="wrap">
+    <h2 class="h2" data-rv>От мешка до чашки за 9 дней</h2>
+    <p class="lead" data-rv>Наведите или нажмите на этап, чтобы раскрыть его.</p>
+    <div class="acc" id="acc">
+      <div class="col on" role="button" tabindex="0"><img src="../img/beans.jpg" alt="Обжаренное кофейное зерно" loading="lazy"><span class="num">1</span><div class="cap"><h3>Отбор лотов</h3><p>Покупаем зелёное зерно с оценкой от 84 баллов SCA и проверяем каждый лот на каппинге.</p></div></div>
+      <div class="col" role="button" tabindex="0"><img src="../img/roaster.jpg" alt="Зерно засыпают в барабан ростера" loading="lazy"><span class="num">2</span><div class="cap"><h3>Обжарка</h3><p>Барабан на 12 кг. Каждая партия пишется в профиль и сверяется с эталоном по температуре.</p></div></div>
+      <div class="col" role="button" tabindex="0"><img src="../img/cafe.jpg" alt="Деревянный интерьер кофейни" loading="lazy"><span class="num">3</span><div class="cap"><h3>Отдых 7 дней</h3><p>Зерно отдаёт углекислый газ, и вкус становится ровным. Пока оно отдыхает, стоит на этих полках.</p></div></div>
+      <div class="col" role="button" tabindex="0"><img src="../img/latte.jpg" alt="Чашка латте" loading="lazy" style="object-position:30% 50%"><span class="num">4</span><div class="cap"><h3>Ваша чашка</h3><p>Мелем под способ заваривания прямо перед чашкой, вода 93 °C.</p></div></div>
+    </div>
+  </div></section>
+
+  <section id="menu" style="padding-top:0"><div class="wrap">
+    <div class="mhead">
+      <h2 class="h2" data-rv>Меню</h2>
+      <div class="tabs" role="tablist" aria-label="Разделы меню">
+        <button class="tab" role="tab" aria-selected="true" data-t="0" id="t0">Эспрессо</button>
+        <button class="tab" role="tab" aria-selected="false" data-t="1" id="t1">Альтернатива</button>
+        <button class="tab" role="tab" aria-selected="false" data-t="2" id="t2">К кофе</button>
+      </div>
+    </div>
+    <div class="list" id="list" role="tabpanel" aria-live="polite"></div>
+  </div></section>
+
+  <section id="bean" style="padding-top:0"><div class="wrap">
+    <article class="label" data-rv>
+      <div class="stamp" aria-hidden="true"><svg viewBox="0 0 200 200"><defs><path id="c" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><circle cx="100" cy="100" r="98" fill="#E2553D"/><text font-family="Unbounded, sans-serif" font-weight="700" font-size="14" letter-spacing="3" fill="#13302A"><textPath href="#c">СВЕЖАЯ ОБЖАРКА • КАЖДЫЙ ВТОРНИК •</textPath></text><ellipse cx="100" cy="100" rx="22" ry="34" fill="#13302A" transform="rotate(25 100 100)"/><path d="M92 70c18 14-6 40 12 60" stroke="#E2553D" stroke-width="4" fill="none" transform="rotate(25 100 100)"/></svg></div>
+      <div>
+        <div class="kick">ПАРТИЯ №214 · 250 Г · 6 900 ₸</div>
+        <h2>Эфиопия, Иргачефф</h2>
+        <p>Мытая обработка, светлая обжарка под воронку и аэропресс. Чай с бергамотом и косточковые фрукты.</p>
+        <dl class="specs">
+          <div><dt>Оценка SCA</dt><dd>86,5</dd></div>
+          <div><dt>Высота</dt><dd>1 900–2 100 м</dd></div>
+          <div><dt>Обработка</dt><dd>Мытая</dd></div>
+          <div><dt>Выгрузка</dt><dd>205 °C, 11:00</dd></div>
+        </dl>
+      </div>
+      <figure class="chart" style="margin:0">
+        <h3>Профиль обжарки, °C по минутам</h3>
+        <svg id="roast" viewBox="0 0 600 300" role="img" aria-label="Кривая обжарки: поворотная точка на 1-й минуте при 96 °C, первый крэк на 9:30 при 196 °C, выгрузка на 11-й минуте при 205 °C"></svg>
+      </figure>
+    </article>
+  </div></section>
+
+  <section class="visit" id="visit">
+    <img src="../img/cafe.jpg" alt="Интерьер кофейни с книжными полками" id="visitImg" style="object-position:50% 40%">
+    <div class="wrap">
+      <form class="bk" id="book" novalidate>
+        <h2>Сорок мест и розетка у каждого стола</h2>
+        <div class="info"><span>Астана, Левый берег, ул. Сыганак, 10</span><span>Каждый день, 8:00–22:00</span></div>
+        <label for="nm">Имя<input id="nm" placeholder="Айгерим"></label>
+        <div class="two"><label for="dt">Дата<input id="dt" type="date"></label><label for="tm">Время<select id="tm"></select></label></div>
+        <label for="gs">Гостей<select id="gs"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5–8</option></select></label>
+        <button class="btn" type="submit" style="justify-self:start">Забронировать стол</button>
+        <div id="ok" class="done" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap"><span>© 2026 Дала Роастерс</span><span>Концепт-сайт для портфолио. Бренд вымышлен. Фото: Unsplash.</span></div></footer>
+<div class="peek" id="peek" aria-hidden="true"><img id="peekImg" alt=""></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE = matchMedia('(pointer: fine)').matches;
+const HAS = !!window.gsap, ST = HAS && !!window.ScrollTrigger;
+let lenis = null;
+if (!RM && window.Lenis) {
+  lenis = new Lenis({ lerp: 0.085 });
+  if (ST) { gsap.registerPlugin(ScrollTrigger); lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
+  else { const r = t => { lenis.raf(t); requestAnimationFrame(r); }; requestAnimationFrame(r); }
+} else if (ST) gsap.registerPlugin(ScrollTrigger);
+document.addEventListener('click', e => { const a = e.target.closest('a[href^="#"]'); if (!a) return; const el = document.querySelector(a.getAttribute('href')); if (!el) return; e.preventDefault(); lenis ? lenis.scrollTo(el, { duration: 1.4 }) : el.scrollIntoView({ behavior: 'smooth' }); });
+if (!RM && FINE) document.querySelectorAll('[data-magnet]').forEach(el => {
+  el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .28}px,${(e.clientY - r.top - r.height / 2) * .4}px)`; });
+  el.addEventListener('pointerleave', () => el.style.transform = '');
+});
+
+/* accordion */
+(() => {
+  const cols = [...document.querySelectorAll('.col')];
+  const open = c => cols.forEach(x => x.classList.toggle('on', x === c));
+  cols.forEach(c => { c.addEventListener('click', () => open(c)); c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(c); } }); if (FINE) c.addEventListener('pointerenter', () => open(c)); });
+})();
+
+/* menu */
+(() => {
+  const data = [
+    [['Эспрессо', 'Двойная порция, 36 г из 18 г зерна', 900, 'beans'], ['Капучино', '250 или 350 мл', 1400, 'latte'], ['Флэт уайт', 'Двойной ристретто и 150 мл молока', 1500, 'latte'], ['Раф лавандовый', 'Сливки, ваниль, сушёная лаванда', 1800, 'cafe'], ['Кортадо', 'Пополам эспрессо и молоко', 1300, 'latte']],
+    [['Воронка V60', 'Зерно на выбор, 300 мл', 1900, 'beans'], ['Аэропресс', 'Плотнее и слаще воронки', 1800, 'roaster'], ['Кемекс на двоих', '500 мл в графине', 3200, 'cafe'], ['Колд брю', '18 часов настаивания', 1700, 'beans'], ['Каппинг-сет', 'Три страны по 100 мл', 2900, 'roaster']],
+    [['Баурсак с солёной карамелью', 'Горячие до 12:00', 600, 'cafe'], ['Чизкейк с облепихой', 'Сливочный сыр, песочная основа', 1900, 'cafe'], ['Круассан', 'Сливочное масло 82%', 1100, 'cafe'], ['Гранола', 'Йогурт, ягоды, мёд из Катон-Карагая', 1700, 'cafe']]
+  ];
+  const list = document.getElementById('list'), tabs = [...document.querySelectorAll('.tab')], peek = document.getElementById('peek'), pimg = document.getElementById('peekImg');
+  function show(i, anim) {
+    tabs.forEach((t, k) => t.setAttribute('aria-selected', k === i));
+    list.innerHTML = data[i].map(([n, s, p, img]) => `<div class="it" data-img="${img}"><b>${n}</b><span>${p.toLocaleString('ru-RU')} ₸</span><small>${s}</small></div>`).join('');
+    if (anim && !RM && HAS) gsap.from(list.children, { y: 24, duration: .7, ease: 'expo.out', stagger: .05 });
+  }
+  tabs.forEach((t, i) => t.addEventListener('click', () => show(i, true)));
+  show(0, false);
+  if (!RM && FINE && HAS) {
+    let x = 0, y = 0, tx = 0, ty = 0, on = false;
+    list.addEventListener('pointerover', e => { const it = e.target.closest('.it'); if (!it) return; const src = `../img/${it.dataset.img}.jpg`; if (!pimg.src.endsWith(src)) pimg.src = src; if (!on) { on = true; gsap.to(peek, { scale: 1, duration: .45, ease: 'back.out(2)' }); } });
+    list.addEventListener('pointerleave', () => { on = false; gsap.to(peek, { scale: 0, duration: .3 }); });
+    addEventListener('pointermove', e => { tx = e.clientX + 150; ty = e.clientY; }, { passive: true });
+    (function f() { x += (tx - x) * .12; y += (ty - y) * .12; peek.style.left = x + 'px'; peek.style.top = y + 'px'; gsap.set(peek, { rotate: Math.max(-14, Math.min(14, (tx - x) * .05)) - 4 }); requestAnimationFrame(f); })();
+  }
+})();
+
+/* roast chart */
+(() => {
+  const svg = document.getElementById('roast'), NS = 'http://www.w3.org/2000/svg';
+  const L = 44, R = 584, T = 16, B = 266, X = m => L + (m / 12) * (R - L), Y = c => B - ((c - 80) / 140) * (B - T);
+  const mk = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
+  for (let c = 80; c <= 220; c += 35) { mk('line', { x1: L, x2: R, y1: Y(c), y2: Y(c), stroke: '#D3CBBB' }); mk('text', { x: L - 8, y: Y(c) + 4, 'text-anchor': 'end' }).textContent = c; }
+  for (let m = 0; m <= 12; m += 2) mk('text', { x: X(m), y: B + 22, 'text-anchor': 'middle' }).textContent = m + ' мин';
+  const pts = [[0, 200], [.5, 130], [1, 96], [2, 110], [3, 128], [4, 143], [5, 156], [6, 167], [7, 177], [8, 186], [9, 193], [9.5, 196], [10, 199], [11, 205]];
+  let d = `M${X(0)},${Y(200)}`; for (let i = 1; i < pts.length; i++) { const [a, b] = pts[i - 1], [c, e] = pts[i], m = (X(a) + X(c)) / 2; d += ` C${m},${Y(b)} ${m},${Y(e)} ${X(c)},${Y(e)}`; }
+  mk('rect', { x: X(9.5), y: T, width: X(11) - X(9.5), height: B - T, fill: 'rgba(226,85,61,.14)' });
+  const path = mk('path', { d, fill: 'none', stroke: '#13302A', 'stroke-width': 3, 'stroke-linecap': 'round' });
+  [[1, 96, 'поворотная точка', 'start', 10, 22], [9.5, 196, 'первый крэк 9:30', 'end', -10, -12], [11, 205, 'выгрузка', 'end', -10, -14]].forEach(([m, c, t, an, dx, dy]) => { mk('circle', { cx: X(m), cy: Y(c), r: 5.5, fill: '#E2553D', stroke: '#EFE6D6', 'stroke-width': 2 }); const tx = mk('text', { x: X(m) + dx, y: Y(c) + dy, 'text-anchor': an }); tx.textContent = t; tx.style.fill = '#13302A'; tx.style.fontWeight = 700; });
+  if (!RM && ST) { const len = path.getTotalLength(); path.style.strokeDasharray = len; gsap.fromTo(path, { strokeDashoffset: len }, { strokeDashoffset: 0, duration: 2.2, ease: 'power2.inOut', scrollTrigger: { trigger: svg, start: 'top 85%' } }); }
+})();
+
+/* booking */
+(() => {
+  const f = document.getElementById('book'), tm = document.getElementById('tm'), dt = document.getElementById('dt'), ok = document.getElementById('ok');
+  for (let h = 8; h <= 21; h++) for (const m of ['00', '30']) { if (h === 21 && m === '30') continue; const o = document.createElement('option'); o.textContent = `${h}:${m}`; if (h === 19 && m === '00') o.selected = true; tm.appendChild(o); }
+  const d = new Date(); d.setDate(d.getDate() + 1); dt.value = d.toISOString().slice(0, 10);
+  f.addEventListener('submit', e => {
+    e.preventDefault(); const nm = document.getElementById('nm');
+    if (!nm.value.trim()) { nm.focus(); nm.style.borderColor = '#E2553D'; nm.placeholder = 'Напишите имя, чтобы мы знали, кого ждать'; if (HAS && !RM) gsap.fromTo(f, { x: -8 }, { x: 0, duration: .5, ease: 'elastic.out(1.5,.2)' }); return; }
+    const ds = new Date(dt.value).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+    ok.innerHTML = `${nm.value.trim()}, ждём вас ${ds} в ${tm.value}.<small>Демо-форма концепта, заявка никуда не отправляется.</small>`; ok.hidden = false;
+    if (!RM && HAS) gsap.from(ok, { y: 14, scale: .97, duration: .6, ease: 'back.out(2)' });
+  });
+})();
+
+if (!RM && HAS) {
+  gsap.from('#heroImg', { scale: 1.25, duration: 2.2, ease: 'expo.out' });
+  gsap.from('#brand span', { yPercent: 100, duration: 1.3, ease: 'expo.out', stagger: .08, delay: .2 });
+  if (ST) {
+    gsap.to('#heroImg', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('#brand', { yPercent: -30, letterSpacing: '-0.02em', ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.fromTo('#visitImg', { yPercent: -8, scale: 1.15 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.visit', start: 'top bottom', end: 'bottom top', scrub: true } });
+    gsap.utils.toArray('[data-rv]').forEach(el => gsap.from(el, { y: 50, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%' } }));
+    gsap.from('.col', { y: 80, duration: 1.1, ease: 'expo.out', stagger: .08, scrollTrigger: { trigger: '#acc', start: 'top 85%' } });
+  }
+}
+</script>
+
+</body></html>

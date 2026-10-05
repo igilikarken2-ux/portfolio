@@ -1,0 +1,399 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>Пульс 51</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: chalk-white gym floor; hero = live ECG trace across the full width, headline thumps on every beat; tools (schedule, zone calc, plans) below */
+:root{
+  --chalk:#EEEFEA; --card:#FFFFFF; --ink:#12151C; --mute:#5E6472; --rule:#D6D8D0;
+  --hot:#FF4A1C; --cobalt:#2340F5; --mint:#16B58A;
+  --display:"Dela Gothic One","Arial Black",Impact,sans-serif;
+  --body:"Onest",ui-sans-serif,system-ui,sans-serif;
+  --gut:clamp(16px,4vw,56px);
+}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+*{box-sizing:border-box}
+body{background:var(--chalk);color:var(--ink);font:16px/1.6 var(--body);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:var(--gut)}
+
+.nav{position:fixed;inset:0 0 auto;z-index:20;padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;height:74px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font:400 22px/1 var(--display);text-decoration:none;background:var(--ink);color:var(--chalk);padding:10px 14px;border-radius:12px}
+.logo svg{width:22px;height:22px}
+.navr{display:flex;gap:6px;background:rgba(255,255,255,.75);backdrop-filter:blur(12px);padding:6px;border-radius:14px;box-shadow:0 1px 0 var(--rule)}
+.navr a{text-decoration:none;font-weight:700;font-size:14px;padding:10px 14px;border-radius:10px;transition:background .2s}
+.navr a:hover{background:var(--chalk)}
+.navr a.cta{background:var(--hot);color:#fff}
+@media (max-width:700px){.navr a:not(.cta){display:none}}
+
+/* hero */
+.hero{position:relative;padding-block:clamp(120px,15vh,160px) 40px;overflow:hidden}
+.hero h1{font:400 clamp(56px,11.5vw,176px)/.86 var(--display);margin:0;letter-spacing:-.02em;text-transform:uppercase;transform-origin:30% 60%;will-change:transform}
+.hero h1 span{display:block}
+.hero h1 .o{color:var(--hot)}
+.ecg{position:relative;margin-top:clamp(18px,3vw,36px);height:clamp(130px,20vw,220px)}
+#ecg{width:100%;height:100%;display:block}
+.bpm{position:absolute;right:var(--gut);top:calc(clamp(120px,15vh,160px) + clamp(56px,11.5vw,176px)*.92);text-align:right}
+.bpm b{display:block;font:400 clamp(48px,7vw,104px)/1 var(--display);font-variant-numeric:tabular-nums;color:var(--hot)}
+.bpm span{font-weight:700;font-size:14px;color:var(--mute)}
+.bpm .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--hot);margin-right:6px;vertical-align:1px}
+@media (max-width:860px){.bpm{position:static;text-align:left;margin-top:18px;padding-inline:0}}
+.hero-foot{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-top:18px}
+.hero-foot p{max-width:46ch;margin:0;font-size:clamp(16px,1.5vw,19px);color:var(--mute)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:17px 28px;border-radius:14px;border:0;background:var(--ink);color:#fff;font:800 16px/1 var(--body);cursor:pointer;text-decoration:none;transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+.btn.hot{background:var(--hot)}
+.btn:hover{animation:jolt .35s}
+@keyframes jolt{25%{transform:translate(-3px,1px) rotate(-1.5deg)}50%{transform:translate(3px,-1px) rotate(1.5deg)}75%{transform:translate(-2px,0) rotate(-.5deg)}}
+
+section{padding-block:clamp(80px,10vw,140px)}
+.h2{font:400 clamp(40px,6.4vw,92px)/.9 var(--display);text-transform:uppercase;margin:0 0 16px;letter-spacing:-.015em;text-wrap:balance}
+.lead{max-width:56ch;color:var(--mute);margin:0;font-size:17px}
+
+/* classes */
+.classes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:48px}
+@media (max-width:1060px){.classes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.classes{grid-template-columns:1fr}}
+.cl{position:relative;background:var(--card);border-radius:20px;padding:22px;display:grid;gap:14px;align-content:start;overflow:hidden;min-width:0;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.cl:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 18px 40px -18px rgba(18,21,28,.35)}
+.cl svg.ic{width:44px;height:44px}
+.cl h3{margin:0;font:400 26px/1 var(--display);text-transform:uppercase}
+.cl p{margin:0;color:var(--mute);font-size:14px}
+.lvl{display:flex;gap:4px}
+.lvl i{flex:1;height:8px;border-radius:4px;background:var(--rule)}
+.lvl i.on{background:var(--c)}
+.cl small{font-weight:700;font-size:12px;color:var(--mute)}
+
+/* schedule */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:36px 0 18px}
+.f{border:1.5px solid var(--rule);background:var(--card);border-radius:999px;padding:10px 16px;font:700 14px var(--body);cursor:pointer;color:var(--ink);transition:background .2s,color .2s,border-color .2s}
+.f[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sched-scroll{overflow-x:auto;border-radius:20px;background:var(--card)}
+.sched{display:grid;grid-template-columns:70px repeat(7,minmax(118px,1fr));min-width:900px}
+.sched>div{padding:12px 10px;border-bottom:1px solid var(--chalk);border-right:1px solid var(--chalk);min-height:64px}
+.sched .hd{font-weight:800;font-size:14px;background:var(--card);position:sticky;top:0}
+.sched .hd.today{color:var(--hot)}
+.sched .tm{font-weight:700;color:var(--mute);font-variant-numeric:tabular-nums;font-size:14px}
+.slot{border-radius:12px;padding:8px 10px;color:#fff;font-size:13px;font-weight:700;line-height:1.25;transition:opacity .3s,transform .3s}
+.slot small{display:block;font-weight:500;opacity:.85}
+.slot.dim{opacity:.12;transform:scale(.94)}
+
+/* zone calc */
+.calc{display:grid;grid-template-columns:340px minmax(0,1fr);gap:clamp(20px,4vw,48px);margin-top:48px;background:var(--ink);color:var(--chalk);border-radius:28px;padding:clamp(22px,4vw,48px)}
+@media (max-width:880px){.calc{grid-template-columns:1fr}}
+.calc label{display:grid;gap:10px;font-weight:700;font-size:14px;color:#AEB3BF;margin-bottom:26px}
+.calc output{font:400 40px/1 var(--display);color:#fff}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:4px;background:#2A2F3B;outline-offset:6px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--hot);border:4px solid var(--ink);box-shadow:0 0 0 2px var(--hot);cursor:grab}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--hot);border:4px solid var(--ink);cursor:grab}
+.calc .note{font-size:13px;color:#8D93A1;margin:0}
+.zones{display:grid;gap:10px;min-width:0}
+.z{display:grid;grid-template-columns:120px minmax(0,1fr) 110px;gap:14px;align-items:center}
+.z b{font-size:14px}
+.z b small{display:block;color:#8D93A1;font-weight:500}
+.z .bar{height:38px;border-radius:10px;background:#20242E;position:relative;overflow:hidden}
+.z .bar i{position:absolute;top:0;bottom:0;border-radius:10px;transition:left .5s cubic-bezier(.2,.8,.2,1),width .5s cubic-bezier(.2,.8,.2,1)}
+.z span{font:400 20px/1 var(--display);font-variant-numeric:tabular-nums;text-align:right}
+@media (max-width:560px){.z{grid-template-columns:1fr auto}.z .bar{grid-column:1/-1;grid-row:2}}
+
+/* plans */
+.toggle{display:inline-flex;background:var(--card);border-radius:14px;padding:5px;margin-top:30px;gap:4px}
+.toggle button{border:0;background:none;padding:11px 18px;border-radius:10px;font:800 14px var(--body);cursor:pointer;color:var(--mute)}
+.toggle button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+@media (max-width:900px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--card);border-radius:24px;padding:28px;display:grid;gap:16px;align-content:start;min-width:0}
+.plan.pro{background:var(--hot);color:#fff}
+.plan h3{margin:0;font:400 30px/1 var(--display);text-transform:uppercase}
+.plan .price{font:400 clamp(40px,4.4vw,56px)/1 var(--display);font-variant-numeric:tabular-nums}
+.plan .price small{font:700 15px var(--body);opacity:.7}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-weight:600}
+.plan li{display:flex;gap:10px}
+.plan li::before{content:"";flex:0 0 18px;height:18px;margin-top:3px;border-radius:50%;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5 9-10' stroke='black' stroke-width='3' fill='none'/%3E%3C/svg%3E") center/14px no-repeat;opacity:.9}
+.plan .btn{justify-content:center}
+.plan.pro .btn{background:#fff;color:var(--hot)}
+
+/* trial */
+.trial{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center}
+@media (max-width:880px){.trial{grid-template-columns:1fr}}
+.trial form{display:grid;gap:12px;background:var(--card);padding:clamp(20px,3vw,32px);border-radius:24px}
+.trial input{font:600 16px var(--body);padding:16px;border-radius:12px;border:1.5px solid var(--rule);background:var(--chalk);color:var(--ink);width:100%}
+.trial input:focus{outline:none;border-color:var(--cobalt)}
+.trial .ok{font-weight:700;color:var(--mint)}
+.shake{animation:jolt .4s}
+
+footer{padding-block:40px;border-top:1px solid var(--rule);color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* hero on photo */
+.hero{color:#fff;isolation:isolate;background:var(--ink)}
+.hbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;z-index:-2;will-change:transform}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(18,21,28,.85),rgba(18,21,28,.35) 60%,rgba(18,21,28,.6)),linear-gradient(0deg,rgba(18,21,28,.9),rgba(18,21,28,0) 40%)}
+.hero .bpm span,.hero-foot p{color:rgba(255,255,255,.75)}
+.nav .navr{background:rgba(255,255,255,.88)}
+/* classes as expanding rows */
+.rows{margin-top:44px;border-top:2px solid var(--ink)}
+.rw{position:relative;display:grid;grid-template-columns:70px minmax(0,1fr) minmax(0,1fr) 150px;gap:20px;align-items:center;padding:26px 0;border-bottom:2px solid var(--ink);overflow:hidden;isolation:isolate;transition:padding .7s cubic-bezier(.7,0,.2,1),color .4s;cursor:default}
+.rw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;clip-path:inset(50% 0 50% 0);transition:clip-path .8s cubic-bezier(.7,0,.2,1)}
+.rw::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(18,21,28,.85),rgba(18,21,28,.3));opacity:0;transition:opacity .6s}
+.rw:hover,.rw:focus-within{padding:90px 0;color:#fff}
+.rw:hover img,.rw:focus-within img{clip-path:inset(0 0 0 0)}
+.rw:hover::after{opacity:1}
+.rw .n{font:400 20px var(--display);color:var(--c);padding-left:12px}
+.rw h3{margin:0;font:400 clamp(40px,6vw,92px)/.9 var(--display);text-transform:uppercase;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.rw:hover h3{transform:translateX(16px) skewX(-6deg)}
+.rw p{margin:0;font-size:15px;max-width:34ch}
+.rw .lvl{display:flex;gap:4px;padding-right:12px}
+.rw .lvl i{flex:1;height:10px;border-radius:5px;background:var(--rule)}
+.rw .lvl i.on{background:var(--c)}
+@media (max-width:760px){.rw{grid-template-columns:40px minmax(0,1fr);padding:20px 0}.rw p,.rw .lvl{grid-column:2}.rw:hover{padding:40px 0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="#FF4A1C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 4 12 3-9 2 3h5"/></svg>ПУЛЬС 51</a>
+  <nav class="navr"><a href="#classes">Направления</a><a href="#sched">Расписание</a><a href="#zones">Пульс</a><a href="#plans">Цены</a><a class="cta" href="#trial">Пробная</a></nav>
+</div></header>
+
+<main id="top">
+  <section class="hero" style="padding-bottom:30px">
+    <img class="hbg" src="../img/spin.jpg" alt="Сайкл-тренировка в зале" id="hbg">
+    <div class="wrap">
+      <h1 id="thump" aria-label="Двигайся чаще"><span>Двигайся</span><span class="o">чаще</span></h1>
+    </div>
+    <div class="bpm" aria-live="off"><b id="bpm">72</b><span><i class="dot" id="dot"></i>уд/мин сейчас в зале</span></div>
+    <div class="ecg" aria-hidden="true"><canvas id="ecg"></canvas></div>
+    <div class="wrap hero-foot">
+      <p>Зал на 51-й параллели, Есильский район. Групповые тренировки каждые полчаса с 7:00 до 22:00 и тренажёрный зал без очередей.</p>
+      <a class="btn hot" href="#trial" data-magnet>Первая тренировка бесплатно</a>
+    </div>
+  </section>
+
+  <section id="classes"><div class="wrap">
+    <h2 class="h2" data-rv>Пять направлений</h2>
+    <p class="lead" data-rv>Наведите на направление, чтобы заглянуть в зал. Полоски справа показывают нагрузку из пяти.</p>
+    <div class="rows" id="clGrid"></div>
+  </div></section>
+
+  <section id="sched" style="padding-top:0"><div class="wrap">
+    <h2 class="h2" data-rv>Расписание недели</h2>
+    <p class="lead" data-rv>Выберите направление, и всё лишнее приглушится.</p>
+    <div class="filters" id="filters"></div>
+    <div class="sched-scroll"><div class="sched" id="grid"></div></div>
+  </div></section>
+
+  <section id="zones" style="padding-top:0"><div class="wrap">
+    <h2 class="h2" data-rv>Твои пульсовые зоны</h2>
+    <p class="lead" data-rv>Считаем по формуле Карвонена: учитываем возраст и пульс в покое. Подвигайте ползунки.</p>
+    <div class="calc">
+      <div>
+        <label for="age">Возраст <output id="ageO">28</output><input id="age" type="range" min="16" max="70" value="28"></label>
+        <label for="rest">Пульс в покое <output id="restO">62</output><input id="rest" type="range" min="40" max="95" value="62"></label>
+        <p class="note">Максимальный пульс: <b id="max" style="color:#fff">192</b> уд/мин (220 минус возраст). Это ориентир, а не медицинская норма.</p>
+      </div>
+      <div class="zones" id="zonesEl"></div>
+    </div>
+  </div></section>
+
+  <section id="plans" style="padding-top:0"><div class="wrap">
+    <h2 class="h2" data-rv>Абонементы</h2>
+    <p class="lead" data-rv>Заморозка до 30 дней в любом абонементе, без справок.</p>
+    <div class="toggle" role="group" aria-label="Срок оплаты"><button aria-pressed="true" data-m="1">Помесячно</button><button aria-pressed="false" data-m="12">За год, −20%</button></div>
+    <div class="plans" id="plansEl"></div>
+  </div></section>
+
+  <section id="trial" style="padding-top:0"><div class="wrap trial">
+    <div>
+      <h2 class="h2" data-rv>Пробная за 0 ₸</h2>
+      <p class="lead" data-rv>Оставьте номер, тренер перезвонит в течение 15 минут, подберёт время и покажет зал.</p>
+    </div>
+    <form id="trialF" novalidate>
+      <input id="tn" placeholder="Имя" aria-label="Имя">
+      <input id="tp" placeholder="+7 700 000 00 00" inputmode="tel" aria-label="Телефон">
+      <button class="btn hot" type="submit" style="justify-content:center">Записаться на пробную</button>
+      <div class="ok" id="tok" aria-live="polite"></div>
+    </form>
+  </div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Пульс 51, Астана</span><span>Концепт-сайт для портфолио. Бренд вымышлен. Фото: Unsplash.</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE = matchMedia('(pointer: fine)').matches;
+
+let lenis = null, vel = 0;
+if (!RM && window.Lenis) {
+  lenis = new Lenis({ lerp: 0.09 });
+  lenis.on('scroll', e => { vel = e.velocity; });
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger); lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+  } else { const r = t => { lenis.raf(t); requestAnimationFrame(r); }; requestAnimationFrame(r); }
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const el = document.querySelector(a.getAttribute('href')); if (!el) return; e.preventDefault();
+  lenis ? lenis.scrollTo(el, { offset: -84, duration: 1.3 }) : el.scrollIntoView({ behavior: 'smooth' });
+}));
+if (!RM && FINE) document.querySelectorAll('[data-magnet]').forEach(el => {
+  el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .25}px,${(e.clientY - r.top - r.height / 2) * .4}px)`; });
+  el.addEventListener('pointerleave', () => el.style.transform = '');
+});
+
+/* ECG: sweeping trace, BPM rises with scroll speed, headline thumps on each beat */
+(() => {
+  const cv = document.getElementById('ecg'), cx = cv.getContext('2d'), out = document.getElementById('bpm'), h1 = document.getElementById('thump'), dot = document.getElementById('dot');
+  const DPR = Math.min(devicePixelRatio || 1, 2);
+  let W, H, buf = [], head = 0, phase = 0, bpm = 72, last = performance.now();
+  function size() { const r = cv.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W * DPR; cv.height = H * DPR; cx.setTransform(DPR, 0, 0, DPR, 0, 0); buf = new Array(Math.ceil(W)).fill(0); head = 0; }
+  function pqrst(p) {
+    const g = (c, w, a) => a * Math.exp(-((p - c) ** 2) / (2 * w * w));
+    return g(.12, .025, .12) - g(.235, .008, .14) + g(.26, .01, 1) - g(.29, .01, .3) + g(.5, .05, .28);
+  }
+  function draw() {
+    cx.clearRect(0, 0, W, H);
+    cx.strokeStyle = 'rgba(255,255,255,.07)'; cx.lineWidth = 1;
+    for (let x = 0; x < W; x += 24) { cx.beginPath(); cx.moveTo(x, 0); cx.lineTo(x, H); cx.stroke(); }
+    for (let y = 0; y < H; y += 24) { cx.beginPath(); cx.moveTo(0, y); cx.lineTo(W, y); cx.stroke(); }
+    const mid = H * .62, amp = H * .55;
+    cx.lineWidth = 3.5; cx.lineJoin = 'round'; cx.lineCap = 'round';
+    cx.strokeStyle = '#FF4A1C';
+    cx.beginPath();
+    for (let i = 0; i < buf.length; i++) {
+      const gap = (i - head + buf.length) % buf.length;
+      if (gap < 30) { cx.stroke(); cx.beginPath(); continue; }
+      const y = mid - buf[i] * amp;
+      (i === 0 || gap === 30) ? cx.moveTo(i, y) : cx.lineTo(i, y);
+    }
+    cx.stroke();
+    cx.fillStyle = '#FF4A1C'; cx.beginPath(); cx.arc(head, mid - buf[(head - 1 + buf.length) % buf.length] * amp, 6, 0, 6.283); cx.fill();
+  }
+  function beat() {
+    if (window.gsap) gsap.fromTo(h1, { scale: 1.035, x: -2, rotate: -.4 }, { scale: 1, x: 0, rotate: 0, duration: .45, ease: 'elastic.out(1.2,.35)' });
+    if (window.gsap) gsap.fromTo(dot, { scale: 1.8 }, { scale: 1, duration: .4 });
+  }
+  function tick(now) {
+    const dt = Math.min(now - last, 50); last = now;
+    const target = 72 + Math.min(Math.abs(vel) * 2.2, 96);
+    bpm += (target - bpm) * .03;
+    out.textContent = Math.round(bpm);
+    const speed = W / 3200 * dt * 1.3;
+    for (let s = 0; s < speed; s++) {
+      const prev = phase;
+      phase += (bpm / 60) / (W * .40625);
+      if (phase >= 1) phase -= 1;
+      if (prev < .26 && phase >= .26) beat();
+      buf[head] = pqrst(phase); head = (head + 1) % buf.length;
+    }
+    draw();
+    requestAnimationFrame(tick);
+  }
+  addEventListener('resize', size); size();
+  if (RM) { for (let i = 0; i < buf.length; i++) { phase = (phase + 1 / 260) % 1; buf[i] = pqrst(phase); } head = buf.length - 1; draw(); }
+  else requestAnimationFrame(tick);
+})();
+
+/* classes */
+const CL = [
+  ['Кроссфит', 'Функциональные комплексы на время, 50 минут', 5, '#FF4A1C', 'M3 10h3v4H3zM18 10h3v4h-3zM6 8h2v8H6zM16 8h2v8h-2zM8 11h8v2H8z'],
+  ['Бокс', 'Техника, мешки, лёгкие спарринги в шлемах', 4, '#12151C', 'M7 4h7a5 5 0 0 1 5 5v4a5 5 0 0 1-5 5H9l-3 3v-4a4 4 0 0 1-2-3.5V8a4 4 0 0 1 3-4Z'],
+  ['Сайкл', 'Велотренировка под музыку в тёмном зале', 3, '#2340F5', 'M5.5 17.5a3.5 3.5 0 1 0 0-.01M18.5 17.5a3.5 3.5 0 1 0 0-.01M5.5 17.5 9 9h6l3.5 8.5M9 9l3 8.5M14 5h3'],
+  ['Силовой', 'Штанга и гантели с тренером, группы до 6 человек', 4, '#16B58A', 'M2 12h20M5 7v10M8 5v14M16 5v14M19 7v10'],
+  ['Йога', 'Хатха и растяжка, коврики выдаём', 2, '#8A5CF6', 'M12 5a2 2 0 1 0 0-.01M12 8v6M6 11l6 2 6-2M8 20l4-6 4 6']
+];
+const CLIMG = ['ring.jpg', 'gloves.jpg', 'spin.jpg', 'ring.jpg', 'yoga.jpg'], CLPOS = ['50% 50%', '50% 50%', '50% 35%', '20% 70%', '50% 60%'];
+document.getElementById('clGrid').innerHTML = CL.map(([n, d, l, c], i) => `<article class="rw" tabindex="0" style="--c:${c === '#12151C' ? '#FF4A1C' : c}">
+  <img src="../img/${CLIMG[i]}" alt="" loading="lazy" style="object-position:${CLPOS[i]}">
+  <span class="n">0${i + 1}</span><h3>${n}</h3><p>${d}</p>
+  <div class="lvl" aria-label="Нагрузка ${l} из 5">${[1, 2, 3, 4, 5].map(k => `<i class="${k <= l ? 'on' : ''}"></i>`).join('')}</div>
+</article>`).join('');
+
+/* schedule */
+(() => {
+  const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'], times = ['07:00', '09:00', '12:30', '18:00', '19:30', '21:00'];
+  const coaches = ['Арман', 'Мадина', 'Ержан', 'Алия', 'Санжар'];
+  const today = (new Date().getDay() + 6) % 7;
+  let active = -1;
+  const grid = document.getElementById('grid'), filters = document.getElementById('filters');
+  function cell(d, t) { const v = (d * 3 + t * 7 + d * t) % 7; return v > 4 ? null : (v + d + t) % 5; }
+  function render() {
+    let h = '<div class="hd"></div>' + days.map((d, i) => `<div class="hd${i === today ? ' today' : ''}">${d}${i === today ? ', сегодня' : ''}</div>`).join('');
+    times.forEach((t, ti) => {
+      h += `<div class="tm">${t}</div>`;
+      days.forEach((_, di) => {
+        const k = cell(di, ti);
+        h += '<div>' + (k === null ? '' : `<div class="slot${active >= 0 && active !== k ? ' dim' : ''}" style="background:${CL[k][3]}">${CL[k][0]}<small>${coaches[(k + di) % 5]}</small></div>`) + '</div>';
+      });
+    });
+    grid.innerHTML = h;
+  }
+  filters.innerHTML = [['Все', -1], ...CL.map((c, i) => [c[0], i])].map(([n, i]) => `<button class="f" data-i="${i}" aria-pressed="${i === -1}">${n}</button>`).join('');
+  filters.querySelectorAll('.f').forEach(b => b.addEventListener('click', () => {
+    active = +b.dataset.i; filters.querySelectorAll('.f').forEach(x => x.setAttribute('aria-pressed', x === b)); render();
+  }));
+  render();
+})();
+
+/* zones */
+(() => {
+  const age = document.getElementById('age'), rest = document.getElementById('rest'), el = document.getElementById('zonesEl');
+  const Z = [['Зона 1', 'восстановление', .5, .6, '#4C5465'], ['Зона 2', 'жиросжигание', .6, .7, '#16B58A'], ['Зона 3', 'аэробная', .7, .8, '#2340F5'], ['Зона 4', 'анаэробная', .8, .9, '#FF8A1C'], ['Зона 5', 'максимум', .9, 1, '#FF4A1C']];
+  el.innerHTML = Z.map(([n, d, , , c]) => `<div class="z"><b>${n}<small>${d}</small></b><div class="bar"><i style="background:${c}"></i></div><span></span></div>`).join('');
+  const rows = [...el.children];
+  function upd() {
+    const a = +age.value, r = +rest.value, max = 220 - a, res = max - r;
+    document.getElementById('ageO').textContent = a; document.getElementById('restO').textContent = r; document.getElementById('max').textContent = max;
+    const lo = r, hi = 200;
+    Z.forEach(([, , p1, p2], i) => {
+      const b1 = Math.round(r + res * p1), b2 = Math.round(r + res * p2);
+      const i_ = rows[i].querySelector('i');
+      i_.style.left = ((b1 - 40) / (hi - 40) * 100) + '%';
+      i_.style.width = ((b2 - b1) / (hi - 40) * 100) + '%';
+      rows[i].querySelector('span').textContent = `${b1}–${b2}`;
+    });
+  }
+  age.addEventListener('input', upd); rest.addEventListener('input', upd); upd();
+})();
+
+/* plans */
+(() => {
+  const P = [['Утро', 15900, ['Вход до 15:00', 'Тренажёрный зал', 'Йога и сайкл'], false], ['Безлимит', 24900, ['Любое время, 7 дней', 'Все групповые', 'Инбоди раз в месяц', 'Полотенце'], true], ['Персональный', 69900, ['8 тренировок с тренером', 'План питания', 'Безлимит в зал'], false]];
+  const el = document.getElementById('plansEl'); let m = 1;
+  function render(anim) {
+    el.innerHTML = P.slice(0, 3).map(([n, p, f, pro]) => {
+      const v = m === 12 ? Math.round(p * .8 / 100) * 100 : p;
+      return `<article class="plan${pro ? ' pro' : ''}"><h3>${n}</h3><div class="price"><span data-v="${v}">${v.toLocaleString('ru-RU')}</span> ₸<small> / мес</small></div><ul>${f.map(x => `<li>${x}</li>`).join('')}</ul><a class="btn" href="#trial">Выбрать</a></article>`;
+    }).join('');
+    if (anim && !RM && window.gsap) gsap.from(el.querySelectorAll('.price'), { y: -14, rotate: -3, duration: .5, ease: 'back.out(3)', stagger: .05 });
+    el.querySelectorAll('a[href="#trial"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const t = document.getElementById('trial'); lenis ? lenis.scrollTo(t, { offset: -84 }) : t.scrollIntoView({ behavior: 'smooth' }); }));
+  }
+  document.querySelectorAll('.toggle button').forEach(b => b.addEventListener('click', () => {
+    m = +b.dataset.m; document.querySelectorAll('.toggle button').forEach(x => x.setAttribute('aria-pressed', x === b)); render(true);
+  }));
+  render(false);
+})();
+
+/* trial form */
+document.getElementById('trialF').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.currentTarget, tp = document.getElementById('tp'), ok = document.getElementById('tok');
+  if (tp.value.replace(/\D/g, '').length < 10) { ok.style.color = '#FF4A1C'; ok.textContent = 'Проверьте номер: нужно 10 или 11 цифр.'; f.classList.remove('shake'); void f.offsetWidth; f.classList.add('shake'); return; }
+  ok.style.color = ''; ok.textContent = 'Заявка принята. Это демо-форма концепта, звонка не будет.';
+});
+
+/* reveals */
+if (!RM && window.gsap) {
+  gsap.from('#hbg', { scale: 1.3, duration: 2, ease: 'expo.out' });
+  if (window.ScrollTrigger) gsap.to('#hbg', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.from('#thump span', { yPercent: 60, skewY: 6, duration: 1, ease: 'expo.out', stagger: .1 });
+  if (window.ScrollTrigger) gsap.utils.toArray('[data-rv]').forEach(el => gsap.from(el, { y: 50, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 92%' } }));
+}
+</script>
+
+</body></html>

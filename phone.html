@@ -1,0 +1,58 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Сайты на телефоне</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: one live phone in the centre, site switcher above; a second mode lays all six phones side by side */
+:root{--bg:#E4E6EA;--ink:#14161B;--mute:#5F6573;--card:#fff;--accent:#3A35F0;--f:"Geologica",ui-sans-serif,system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171C;--ink:#ECEEF3;--mute:#9AA0AD;--card:#22252C;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15171C;--ink:#ECEEF3;--mute:#9AA0AD;--card:#22252C;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.5 var(--f);padding-inline:16px;padding-block:24px 40px}
+.top{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap}
+h1{margin:0;font:800 clamp(26px,3.4vw,40px)/1 var(--f);letter-spacing:-.04em}
+.top p{margin:6px 0 0;color:var(--mute)}
+.mode{display:inline-flex;background:var(--card);border-radius:999px;padding:4px}
+.mode button,.tabs button{border:0;background:none;color:var(--ink);font:600 14px var(--f);padding:10px 16px;border-radius:999px;cursor:pointer}
+.mode button[aria-pressed="true"],.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.tabs{max-width:1300px;margin:18px auto 0;display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.tabs button{background:var(--card)}
+.stage{max-width:1300px;margin:24px auto 0;display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.phone{--s:.8;width:calc(390px * var(--s) + 24px);flex:none;display:grid;gap:10px;justify-items:center}
+.body{width:calc(390px * var(--s) + 24px);height:calc(844px * var(--s) + 24px);background:#0B0C0F;border-radius:calc(52px * var(--s) + 12px);padding:12px;position:relative;box-shadow:0 30px 60px -30px rgba(0,0,0,.5),inset 0 0 0 2px #2A2C33}
+.screen{width:calc(390px * var(--s));height:calc(844px * var(--s));border-radius:calc(52px * var(--s));overflow:hidden;position:relative;background:#fff}
+.screen iframe{width:390px;height:844px;border:0;transform:scale(var(--s));transform-origin:0 0;display:block}
+.island{position:absolute;left:50%;top:22px;width:calc(120px * var(--s));height:calc(34px * var(--s));transform:translateX(-50%);background:#0B0C0F;border-radius:999px;z-index:2;pointer-events:none}
+.cap{font-weight:600;font-size:14px}
+.hint{text-align:center;color:var(--mute);font-size:13px;margin-top:12px}
+.all .phone{--s:.56}
+@media (max-width:520px){.phone{--s:.78}.all .phone{--s:.78}}
+</style>
+
+<div class="top">
+  <div><a href="./" style="color:var(--mute);text-decoration:none;font-size:14px">← Все работы</a><h1 style="margin-top:8px">Как сайты выглядят на телефоне</h1><p>Это живые сайты внутри iPhone: листайте и нажимайте прямо в экране.</p></div>
+  <div class="mode" role="group" aria-label="Режим просмотра"><button aria-pressed="true" data-m="one">По одному</button><button aria-pressed="false" data-m="all">Все сразу</button></div>
+</div>
+<div class="tabs" id="tabs"></div>
+<div class="stage" id="stage"></div>
+<p class="hint">Размер экрана 390 × 844, как у iPhone 14 и 15.</p>
+
+<script>
+const S = [['yasna/', 'Ясна'], ['saksaul/', 'Саксаул'], ['roast196/', '196°'], ['nura/', 'Нұра'], ['tayet/', 'Тает'], ['dala/', 'Дала'], ['stal/', 'Сталь'], ['puls51/', 'Пульс 51'], ['yesil-park/', 'Есиль Парк'], ['britva/', 'Бритва'], ['kyzgaldak/', 'Қызғалдақ'], ['dastarkhan/', 'Дастархан']];
+const stage = document.getElementById('stage'), tabs = document.getElementById('tabs');
+let mode = 'one', cur = 0;
+const phone = ([f, n]) => `<div class="phone"><div class="body"><div class="island"></div><div class="screen"><iframe src="${f}" title="${n} на телефоне" loading="lazy"></iframe></div></div><span class="cap">${n}</span></div>`;
+function render() {
+  stage.classList.toggle('all', mode === 'all');
+  tabs.hidden = mode === 'all';
+  stage.innerHTML = mode === 'all' ? S.map(phone).join('') : phone(S[cur]);
+  tabs.querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', i === cur));
+}
+tabs.innerHTML = S.map(([, n], i) => `<button data-i="${i}">${n}</button>`).join('');
+tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = +b.dataset.i; render(); });
+document.querySelector('.mode').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; mode = b.dataset.m; document.querySelectorAll('.mode button').forEach(x => x.setAttribute('aria-pressed', x === b)); render(); });
+render();
+</script>
+
+</body></html>
