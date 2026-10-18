@@ -6,6 +6,7 @@
 
 | Сайт | Ниша | Фишка |
 |---|---|---|
+| [Предел](https://igilikarken2-ux.github.io/portfolio/predel/) | Атлас космоса | 3D-Земля и планеты на WebGL, полёт от Байконура до края Вселенной |
 | [Ясна](https://igilikarken2-ux.github.io/portfolio/yasna/) | Клиника | рентген-линза, 3D-спираль, талон на WebGL |
 | [Саксаул](https://igilikarken2-ux.github.io/portfolio/saksaul/) | Ресторан на огне | арка на весь экран, бронь-чек |
 | [Обжарочная 196°](https://igilikarken2-ux.github.io/portfolio/roast196/) | Specialty-кофе | зерно из частиц, главы обжарки |
@@ -21,6 +22,6 @@
 
 **Стек:** HTML, CSS, JavaScript, GSAP + ScrollTrigger, Lenis, WebGL, компоненты 21st.dev.
 
-Все бренды вымышлены — это концепты для портфолио. Фото: Unsplash.
+Все бренды вымышлены — это концепты для портфолио. Фото: Unsplash и NASA.
 
 Заказать сайт: Telegram [@iga2282](https://t.me/iga2282)
